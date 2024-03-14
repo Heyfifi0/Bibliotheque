@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AuteurController;
+use App\Http\Controllers\EditeurController;
+use App\Http\Controllers\OuvrageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,9 +15,22 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+// Accueil
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('accueil');
+})->name('accueil');
+
+// Ouvrages
+Route::resource('/ouvrages', OuvrageController::class);
+
+// Auteurs
+Route::resource('/auteurs', AuteurController::class);
+
+// Editeurs
+Route::resource('/editeurs', EditeurController::class);
+
+
 
 //route pour tester la connexion à la base de données
 Route::get('/testbd', function () {
