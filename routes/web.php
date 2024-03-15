@@ -46,7 +46,10 @@ Route::get('/genre', function () {
     return App\Models\Ouvrage::find(1)->genres()->get();
 });
 Route::get('/livres/show', function () {
-    return view('/ouvrages/show');
+    $books = App\Models\Ouvrage::all();
+    return view('/ouvrages/show', [
+        'livres' => $books
+    ]);
 });
 
 Route::get('/livres/edit', function () {
@@ -55,6 +58,4 @@ Route::get('/livres/edit', function () {
 
 Route::get('/livres/create', function () {
     return view('/ouvrages/create');
-
-
 });
