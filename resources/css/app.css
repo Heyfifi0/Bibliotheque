@@ -2,10 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+    h1 {
+        @apply text-2xl underline;
+    }
+    table {
+        @apply border border-black border-collapse mt-5 mb-5 w-[50rem];
+    }
+
+    td {
+        @apply p-4 border border-black;
+    }
+}
+
 /* Classes custom */
 @layer components {
     .navbar {
-        @apply fixed left-0 flex h-screen w-48 flex-col bg-gray-700 shadow-lg;
+        @apply left-0 flex h-screen w-48 flex-col bg-gray-700 shadow-lg;
     }
 
     .navbar-item {

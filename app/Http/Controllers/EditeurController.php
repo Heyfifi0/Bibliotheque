@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class EditeurController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Affiche la liste des éditeurs.
      */
     public function index()
     {
@@ -18,7 +18,7 @@ class EditeurController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Affiche le formulaire de création d'éditeur.
      */
     public function create()
     {
@@ -26,7 +26,7 @@ class EditeurController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Insère un éditeur dans la base de données.
      */
     public function store(Request $request)
     {
@@ -40,7 +40,7 @@ class EditeurController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Affiche l'éditeur spécifié.
      */
     public function show(Editeur $editeur)
     {
@@ -48,7 +48,7 @@ class EditeurController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Affiche le formulaire de modification d'un éditeur.
      */
     public function edit(Editeur $editeur)
     {
@@ -56,7 +56,7 @@ class EditeurController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Met à jour un éditeur.
      */
     public function update(Request $request, Editeur $editeur)
     {
@@ -70,7 +70,7 @@ class EditeurController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Supprime l'éditeur de la base de données.
      */
     public function destroy(Editeur $editeur)
     {

@@ -10,7 +10,7 @@
         <label for="libelle">Nom de l'éditeur</label>
         <input type="text" name="libelle" id="libelle" class="border-2 border-black m-2 p-2" value="{{ $editeur->libelle }}">
         @error('libelle')
-            <small>Nom incorrect</small>
+            <small>{{ $message }}</small>
         @enderror
 
         <button type="submit" class="border-2 border-black">Ajouter</button>

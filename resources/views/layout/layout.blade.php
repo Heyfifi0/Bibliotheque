@@ -7,10 +7,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
 </head>
-<body>
-    @include('components.navbar')
+<body class="flex">
+    <div class="navbar">
+        @include('components.navbar')
+    </div>
 
-    <div class="flex justify-center content-center">
+
+    <div class="flex-1 justify-center ml-10 mt-2">
         @yield('content')
     </div>
 </body>
