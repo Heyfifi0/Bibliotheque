@@ -12,7 +12,9 @@ class EditeurController extends Controller
      */
     public function index()
     {
-        //
+        $editeurs = Editeur::all();
+
+        return view('editeurs.index', compact('editeurs'));
     }
 
     /**
@@ -20,7 +22,7 @@ class EditeurController extends Controller
      */
     public function create()
     {
-        //
+        return view('editeurs.create');
     }
 
     /**
@@ -28,7 +30,13 @@ class EditeurController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'libelle' => 'required'
+        ]);
+
+        Editeur::create($validated)->save();
+
+        return redirect()->route('editeurs.index')->with('success', 'Editeur créé avec succès!');
     }
 
     /**
@@ -44,7 +52,7 @@ class EditeurController extends Controller
      */
     public function edit(Editeur $editeur)
     {
-        //
+        return view('editeurs.edit', compact('editeur'));
     }
 
     /**
@@ -52,7 +60,13 @@ class EditeurController extends Controller
      */
     public function update(Request $request, Editeur $editeur)
     {
-        //
+        $validated = $request->validate([
+            'libelle' => 'required'
+        ]);
+
+        $editeur->update($validated);
+
+        return redirect()->route('editeurs.index')->with('success', 'Editeur créé avec succès!');
     }
 
     /**
@@ -60,6 +74,8 @@ class EditeurController extends Controller
      */
     public function destroy(Editeur $editeur)
     {
-        //
+        $editeur->delete();
+
+        return redirect()->route('editeurs.index')->with('success', 'Editeur supprimé.');
     }
 }
