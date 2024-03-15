@@ -27,5 +27,21 @@ Route::get('/uti', function () {
 
 //test table pivot
 Route::get('/genre', function () {
-    return App\Models\Ouvrage::find(1)->genres();
+    return App\Models\Ouvrage::find(1)->genres()->get();
+});
+
+Route::get('/auteur', function () {
+    return App\Models\Auteur::all();
+});
+
+Route::get('/auteur/c', function () {
+    return view ('/auteur/create');
+});
+
+Route::get('/auteur/e', function () {
+    return view ('/auteur/edit');
+});
+
+Route::get('/auteur/s', function () {
+    return view ('/auteur/show');
 });
