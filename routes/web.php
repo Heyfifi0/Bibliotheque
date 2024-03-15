@@ -27,5 +27,17 @@ Route::get('/uti', function () {
 
 //test table pivot
 Route::get('/genre', function () {
-    return App\Models\Ouvrage::find(1)->genres();
+    return App\Models\Ouvrage::find(1)->genres()->get();
+});
+
+Route::get('/livres/show', function () {
+    return view('/ouvrages/show');
+});
+
+Route::get('/livres/edit', function () {
+    return view('/ouvrages/edit');
+});
+
+Route::get('/livres/create', function () {
+    return view('/ouvrages/create');
 });
