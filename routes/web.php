@@ -60,6 +60,10 @@ Route::get('/auteur/e', function () {
 });
 
 Route::get('/auteur/s', function () {
-    return view ('/auteur/show');
+    $auteurs = App\Models\Auteur::all();
+    return view ('/auteur/show', [
+        'auteurs' => $auteurs
+    ]);
+    
 
 });
