@@ -21,6 +21,6 @@ class Editeur extends Model
 
     public function ouvrages() : HasMany
     {
-        return $this->hasMany(Ouvrage::class);
+        return $this->hasMany(Ouvrage::class, 'id_editeur');
     }
 }

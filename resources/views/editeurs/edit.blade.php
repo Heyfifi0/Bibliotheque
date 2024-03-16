@@ -3,17 +3,23 @@
 @section('title', 'Modifier un éditeur')
 
 @section('content')
-    <form action="{{ route('editeurs.update', $editeur->id_editeur) }}" method="post" class="flex flex-col m-3 justify-center align-bottom">
+
+    <h1>Modifier un éditeur</h1>
+
+    {{-- Formulaire de modification d'éditeur --}}
+    <form action="{{ route('editeurs.update', $editeur->id_editeur) }}" method="post" class="flex flex-col w-80 mt-4">
         @csrf
         @method('put')
 
         <label for="libelle">Nom de l'éditeur</label>
-        <input type="text" name="libelle" id="libelle" class="border-2 border-black m-2 p-2" value="{{ $editeur->libelle }}">
+        <input type="text" name="libelle" id="libelle" class="border-2 border-black m-2 p-2"
+            value="{{ $editeur->libelle }}">
         @error('libelle')
             <small>{{ $message }}</small>
         @enderror
 
         <button type="submit" class="border-2 border-black">Ajouter</button>
     </form>
-@endsection
 
+    <p class="mt-5"><a href="{{ route('editeurs.index') }}" class="text-blue-600 underline">Revenir en arrière</a></p>
+@endsection

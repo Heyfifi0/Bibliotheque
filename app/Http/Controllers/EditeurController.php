@@ -44,7 +44,7 @@ class EditeurController extends Controller
      */
     public function show(Editeur $editeur)
     {
-        //
+        return view('editeurs.show', compact('editeur'));
     }
 
     /**
