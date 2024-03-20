@@ -41,6 +41,11 @@ Route::get('/uti', function () {
     return App\Models\Utilisateur::all();
 });
 
+Route::get('/reservations', [\App\Http\Controllers\ReservationController::class, 'index']);
+Route::get('/reservations-create-form', [\App\Http\Controllers\formCreateReservationController::class, 'index']);
+Route::post('/reservations-create', [\App\Http\Controllers\ReservationController::class, 'create']);
+Route::get('/reservations-delete/{id}', [\App\Http\Controllers\ReservationController::class, 'destroy'])->name('reservation.delete');
+
 //test table pivot
 Route::get('/genre', function () {
     return App\Models\Ouvrage::find(1)->genres()->get();
