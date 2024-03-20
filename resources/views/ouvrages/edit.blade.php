@@ -7,5 +7,14 @@
 </head>
 <body>
     <h1>Edition d'un ouvrage</h1>
+
+    <form action="{{ route('ouvrages.update', $ouvrage->id_ouvrage) }}" method="post"> 
+    @csrf
+    @method('PUT')
+    <label for="titre"> Titre : </label>
+    <input type="text" class="form-control" id="titre" name="titre" required> </input>    
+
+    <button type="submit">Mettre à jour</button>
+</form>
 </body>
 </html>

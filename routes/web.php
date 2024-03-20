@@ -45,17 +45,3 @@ Route::get('/uti', function () {
 Route::get('/genre', function () {
     return App\Models\Ouvrage::find(1)->genres()->get();
 });
-Route::get('/livres/show', function () {
-    $books = App\Models\Ouvrage::all();
-    return view('/ouvrages/show', [
-        'livres' => $books
-    ]);
-});
-
-Route::get('/livres/edit', function () {
-    return view('/ouvrages/edit');
-});
-
-Route::get('/livres/create', function () {
-    return view('/ouvrages/create');
-});
