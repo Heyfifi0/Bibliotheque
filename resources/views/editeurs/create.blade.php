@@ -1,6 +1,6 @@
 @extends('layout.layout')
 
-@section('title', 'Créer un éditeur')
+@section('title', 'Ajouter un éditeur')
 
 @section('content')
 

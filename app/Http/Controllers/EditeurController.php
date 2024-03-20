@@ -12,7 +12,7 @@ class EditeurController extends Controller
      */
     public function index()
     {
-        $editeurs = Editeur::orderBy('id_editeur')->get();
+        $editeurs = Editeur::orderBy('id_editeur')->paginate(2);
 
         return view('editeurs.index', compact('editeurs'));
     }
@@ -63,6 +63,8 @@ class EditeurController extends Controller
         $validated = $request->validate([
             'libelle' => 'required'
         ]);
+
+        // dd($validated);
 
         $editeur->update($validated);
 

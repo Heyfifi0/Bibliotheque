@@ -13,7 +13,7 @@
             <tr class="bg-slate-400">
                 <th>ID</th>
                 <th>Libellé</th>
-                <th>Ouvrages</th>
+                <th></th>
                 <th></th>
                 <th></th>
             </tr>
@@ -41,5 +41,11 @@
             @endforeach
         </tbody>
     </table>
+
+
+    {{ $editeurs->links() }}
+
+
+    <p class="mt-5"><a href="{{ route('editeurs.create') }}" class="text-blue-600 underline">Ajouter un éditeur</a></p>
 
 @endsection
