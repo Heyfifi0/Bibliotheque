@@ -44,6 +44,7 @@ Route::get('/uti', function () {
 Route::get('/reservations', [\App\Http\Controllers\ReservationController::class, 'index']);
 Route::get('/reservations-create-form', [\App\Http\Controllers\formCreateReservationController::class, 'index']);
 Route::post('/reservations-create', [\App\Http\Controllers\ReservationController::class, 'create']);
+Route::get('/reservations-modify-form/{id}', [\App\Http\Controllers\formModifyReservationController::class, 'index']);
 Route::get('/reservations-delete/{id}', [\App\Http\Controllers\ReservationController::class, 'destroy'])->name('reservation.delete');
 
 //test table pivot

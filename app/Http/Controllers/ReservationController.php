@@ -22,11 +22,6 @@ class ReservationController extends Controller
      */
     public function create(Request $request)
     {
-        //$nouvelleReservation = new Reservation;
-        //$nouvelleReservation->id_utilisateur = $request->input('user');
-        //$nouvelleReservation->id_ouvrage = $request->input('ouvrage');
-        //$nouvelleReservation->date_reservation=date("Y/m/d");
-        //return redirect('/reservations'); 
         $nouvelleReservation = Reservation::create([
             'id_utilisateur' => $request->input('user'),
             'id_ouvrage' => $request->input('ouvrage'),
