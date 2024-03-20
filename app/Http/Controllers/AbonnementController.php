@@ -12,7 +12,8 @@ class AbonnementController extends Controller
      */
     public function index()
     {
-        //
+        $abonnements = Abonnement::all();
+        return view('abonnements.index', compact('abonnements'));
     }
 
     /**
@@ -20,7 +21,7 @@ class AbonnementController extends Controller
      */
     public function create()
     {
-        //
+        return view('abonnements.create');
     }
 
     /**
@@ -28,38 +29,60 @@ class AbonnementController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'id_utilisateur' => 'required|max:255',
+            'id_type_abonnement' => 'required|max:255',
+            'date_debut' => 'required|max:255',
+            'date_fin' => 'required|max:255'
+        ]);
+        Abonnement::create($request->all());
+        return redirect()->route('abonnements.index')
+        ->with('success', 'Abonnement created successfully.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Abonnement $abonnement)
+    public function show(Abonnement $id)
     {
-        //
+        $abonnement = Abonnement::find($id);
+        return view('abonnements.show', compact('abonnement'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Abonnement $abonnement)
+    public function edit($id)
     {
-        //
+        $abonnement = Abonnement::find($id);
+        return view('abonnements.edit', compact('abonnement'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Abonnement $abonnement)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'id_utilisateur' => 'required|max:255',
+            'id_type_abonnement' => 'required|max:255',
+            'date_debut' => 'required|max:255',
+            'date_fin' => 'required|max:255'
+        ]);
+        $abonnement = Abonnement::find($id);
+        $abonnement->update($request->all());
+        return redirect()->route('abonnements.index')
+        ->with('success', 'Abonnement updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Abonnement $abonnement)
+    public function destroy($id)
     {
-        //
+        $abonnement = Abonnement::find($id);
+        $abonnement->delete();
+        return redirect()->route('abonnements.index')
+          ->with('success', 'Abonnement deleted successfully');
     }
 }

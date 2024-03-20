@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuteurController;
 use App\Http\Controllers\EditeurController;
 use App\Http\Controllers\OuvrageController;
+use App\Http\Controllers\AbonnementController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,7 +31,9 @@ Route::resource('/auteurs', AuteurController::class);
 // Editeurs
 Route::resource('/editeurs', EditeurController::class);
 
+Route::resource('/abonnements', AbonnementController::class);
 
+Route::resource('/type_abonnements', Type_abonnementController::class);
 
 //route pour tester la connexion à la base de données
 Route::get('/testbd', function () {
@@ -45,3 +48,26 @@ Route::get('/uti', function () {
 Route::get('/genre', function () {
     return App\Models\Ouvrage::find(1)->genres()->get();
 });
+
+
+
+
+
+
+
+/*Route::get('/abonnement', function() {
+    $abonnement = App\Models\Abonnement::all();
+    return view('abonnement/abonnement', ['abonnements' => $abonnement]);
+});
+
+Route::get('/abonnement/add', function() {
+    return view('abonnement/abonnement_add');
+});
+
+Route::get('/abonnement/{$id}/edit', function() {
+    $abonnement = App\Models\Abonnement::all();
+    return view('abonnement/abonnement', ['abonnements' => $abonnement]);
+});
+
+
+*/
