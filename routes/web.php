@@ -47,23 +47,4 @@ Route::get('/genre', function () {
 
 });
 
-Route::get('/auteur', function () {
-    return App\Models\Auteur::all();
-});
 
-Route::get('/auteur/c', function () {
-    return view ('/auteur/create');
-});
-
-Route::get('/auteur/e', function () {
-    return view ('/auteur/edit');
-});
-
-Route::get('/auteur/s', function () {
-    $auteurs = App\Models\Auteur::all();
-    return view ('/auteur/show', [
-        'auteurs' => $auteurs
-    ]);
-    
-
-});

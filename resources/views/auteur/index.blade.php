@@ -1,12 +1,23 @@
+<!DOCTYPE html>
 @extends('layout.layout')
 @section('content')
+
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/public/css_auteur_ind.css">
+</head>
+<body>
 <h1 style="text-align:center;">Liste des auteurs</h1>
 <!--table pour afficher les auteurs-->
 <table style="margin-left:auto;margin-right:auto; padding-top:80px; background-color: #D3D3D3">
     <tr>
         <th style="padding-right:50px;">Nom auteur</th>
         <th>Prenom auteur</th>
-        <th><a href= "/auteur/c" class="btn"><span class="btn btn-success font-weight-bold mr"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo1/dist/../src/media/svg/icons/Navigation/Plus.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+        <!--bouton create-->
+        <th><a href = "{{ route('auteurs.create') }}" class="btn"><span class="btn btn-success font-weight-bold mr"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo1/dist/../src/media/svg/icons/Navigation/Plus.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
     <title>Stockholm-icons / Navigation / Plus</title>
     <desc>Created with Sketch.</desc>
     <defs/>
@@ -21,7 +32,10 @@
             <td style="padding-right:50px;">{{ $auteur -> nom}}</td>
             
             <td>{{ $auteur -> prenom }}</td>
-            <td><a href= "/auteur/e" class="btn"><span class="btn btn-success font-weight-bold mr-2"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo1/dist/../src/media/svg/icons/Design/Edit.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+            <!--bouton edit-->
+            <td>
+            <a href="{{ route('auteurs.edit', $auteur->id_auteur) }}" class="btn btn-primary">
+                <span class="btn btn-success font-weight-bold mr-2"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo1/dist/../src/media/svg/icons/Design/Edit.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
     <title>Stockholm-icons / Design / Edit</title>
     <desc>Created with Sketch.</desc>
     <defs/>
@@ -31,7 +45,14 @@
         <rect fill="#000000" opacity="0.3" x="5" y="20" width="15" height="2" rx="1"/>
     </g>
 </svg><!--end::Svg Icon--></span></a></td>
-            <td><span class="btn btn-danger font-weight-bold mr-2"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo1/dist/../src/media/svg/icons/Home/Trash.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+
+            <!--bouton delete-->
+            <td>
+            <form action="{{ route('auteurs.destroy', $auteur->id_auteur) }}" method="POST">
+        @csrf
+        @method('DELETE')
+            <button onclick ="return confirm('Êtes-vous sûr de vouloir supprimer cet élément ?');" class="btn btn-danger">
+            <span class="btn btn-danger font-weight-bold mr-2" ><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo1/dist/../src/media/svg/icons/Home/Trash.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
     <title>Stockholm-icons / Home / Trash</title>
     <desc>Created with Sketch.</desc>
     <defs/>
@@ -40,10 +61,15 @@
         <path d="M6,8 L18,8 L17.106535,19.6150447 C17.04642,20.3965405 16.3947578,21 15.6109533,21 L8.38904671,21 C7.60524225,21 6.95358004,20.3965405 6.89346498,19.6150447 L6,8 Z M8,10 L8.45438229,14.0894406 L15.5517885,14.0339036 L16,10 L8,10 Z" fill="#000000" fill-rule="nonzero"/>
         <path d="M14,4.5 L14,3.5 C14,3.22385763 13.7761424,3 13.5,3 L10.5,3 C10.2238576,3 10,3.22385763 10,3.5 L10,4.5 L5.5,4.5 C5.22385763,4.5 5,4.72385763 5,5 L5,5.5 C5,5.77614237 5.22385763,6 5.5,6 L18.5,6 C18.7761424,6 19,5.77614237 19,5.5 L19,5 C19,4.72385763 18.7761424,4.5 18.5,4.5 L14,4.5 Z" fill="#000000" opacity="0.3"/>
     </g>
-</svg><!--end::Svg Icon--></span></td>
+</svg><!--end::Svg Icon--></span></button>
+</form>
+</td>
             
         </tr> 
         @endforeach
-    
+       
 </table>
+</body>
+</html>
+{{$auteurs ->links()}}
 @endsection

@@ -7,5 +7,16 @@
 </head>
 <body>
 <h1>Nouveau auteur</h1>
+<form action="{{ route('auteurs.store') }}" method="post">
+@csrf
+
+<div class="form-group">
+    <label for="nom"> Nom : </label>
+    <input type="text" class="form-controll" id="nom" name="nom" required></input>
+    <label for="prenom"> Prenom : </label>
+    <input type="text" class="form-controll" id="prenom" name="prenom" required></input>
+</div>
+<button type="submit" class="btn btn-primary"> Créer </button> 
+</form>
 </body>
 </html>
