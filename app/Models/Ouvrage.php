@@ -21,10 +21,9 @@ class Ouvrage extends Model
         'titre',
         'type'
     ];
-    // avec type ENUM('livre','magazine','ebook')
 
     public function auteurs(){
-        return $this->belongsToMany(Auteur::class);
+        return $this->belongsToMany(Auteur::class,'auteur_ouvrages', 'id_auteur', 'id_ouvrage');
     }
 
     public function commentaires(){
@@ -37,7 +36,7 @@ class Ouvrage extends Model
     }
 
     public function editeurs(){
-        return $this->belongsTo(Editeur::class);
+        return $this->belongsTo(Editeur::class, 'id_editeur');
     }
 
 }

@@ -11,9 +11,35 @@
     <form action="{{ route('ouvrages.update', $ouvrage->id_ouvrage) }}" method="post"> 
     @csrf
     @method('PUT')
-    <label for="titre"> Titre : </label>
-    <input type="text" class="form-control" id="titre" name="titre" required> </input>    
+    <div class="form-group"> 
+            <label for="titre"> Titre : </label>
+            <input type="text" class="form-control" id="titre" name="titre"  required value="{{ $ouvrage->titre }}"> </input>    
+            
+            <select class="form-control" id="type" name="type" required value="{{ $ouvrage->type }}">
+                <option value="livre">Livre</option>
+                <option value="ebook">E-book</option>
+                <option value="magazine">Magazine</option>
+            </select>
 
+            <select class="form-control" id="auteur" name="auteur" required>
+                @foreach($auteurs as $auteur)
+                    <option value="{{ $auteur->id_auteur }}" {{ $ouvrage->auteurs->contains($auteur->id_auteur) ? 'selected' : '' }}>{{ $auteur->nom }} {{ $auteur->prenom }}</option>
+                @endforeach
+            </select>
+
+            <select class="form-control" id="genre" name="genre" required>
+                @foreach($genres as $genre)
+                    <option value="{{ $genre->id_genre }}" {{ $ouvrage->genres->contains($genre->id_genre) ? 'selected' : '' }}>{{ $genre->libelle }}</option>
+                @endforeach
+            </select>
+
+            <select class="form-control" id="editeur" name="id_editeur" required>
+            @foreach($editeurs as $editeur)
+                <option value="{{ $editeur->id_editeur }}" {{ $ouvrage->id_editeur == $editeur->id_editeur ? 'selected' : '' }}>{{ $editeur->libelle }}</option>
+            @endforeach
+        </select>
+
+        </div>
     <button type="submit">Mettre à jour</button>
 </form>
 </body>

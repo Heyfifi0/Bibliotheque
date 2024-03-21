@@ -4,14 +4,34 @@
     <table style="margin-left: auto; margin-right: auto;background-color:#D3D3D3;">
         <t style="text-align:left;">
             <th >Titres</th>
+            <th>Editeurs</th>
+            <th>Auteurs</th>
             <th>Types</th>
+            <th>Genres</th>
+
             <th><a href="{{ route('ouvrages.create')}}" class="btn  ">  Créer </a></th>
         </tr>
         @foreach($livres as $livre)
         <tr>
-            <td style="padding-right:50px;"> {{ $livre->titre}} 
-        </td>
-            <td> {{ $livre->type}}  </td>  
+            <td style="padding-right:50px;"> {{ $livre->titre}}</td>
+            <td style="padding-right:50px;"> {{ $livre->editeurs->libelle }}</td>
+            <td style="padding-right:50px;"> 
+                @foreach($livre->auteurs as $auteur)
+                    {{ $auteur->nom }} {{ $auteur->prenom }}
+                    @if(!$loop->last)
+                        ,
+                    @endif
+                @endforeach
+            </td>
+            <td> {{ $livre->type}}  </td> 
+            <td style="padding-right:50px;"> 
+                @foreach($livre->genres as $genre)
+                    {{ $genre->libelle }} 
+                    @if(!$loop->last)
+                        ,
+                    @endif
+                @endforeach
+            </td> 
             <td> 
                 <a href="{{ route('ouvrages.edit', $livre->id_ouvrage) }}" class="btn btn-primary">
                         <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo1/dist/../src/media/svg/icons/Navigation/Plus.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
