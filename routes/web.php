@@ -4,6 +4,7 @@ use App\Http\Controllers\AuteurController;
 use App\Http\Controllers\EditeurController;
 use App\Http\Controllers\OuvrageController;
 use App\Http\Controllers\AbonnementController;
+use App\Http\Controllers\Type_abonnementController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -48,26 +49,3 @@ Route::get('/uti', function () {
 Route::get('/genre', function () {
     return App\Models\Ouvrage::find(1)->genres()->get();
 });
-
-
-
-
-
-
-
-/*Route::get('/abonnement', function() {
-    $abonnement = App\Models\Abonnement::all();
-    return view('abonnement/abonnement', ['abonnements' => $abonnement]);
-});
-
-Route::get('/abonnement/add', function() {
-    return view('abonnement/abonnement_add');
-});
-
-Route::get('/abonnement/{$id}/edit', function() {
-    $abonnement = App\Models\Abonnement::all();
-    return view('abonnement/abonnement', ['abonnements' => $abonnement]);
-});
-
-
-*/
