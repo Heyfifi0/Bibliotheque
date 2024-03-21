@@ -3,17 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Reservation;
+use App\Models\Utilisateur;
+use App\Models\Ouvrage;
 
 class formModifyReservationController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(int $id)
     {
-
-        $reservations = Reservation::all();
-        return view ("formModifyReservation", compact("reservations"));
+        $reservation = Reservation::find($id);
+        $users = Utilisateur::all();
+        $ouvrages = Ouvrage::all();
+        return view ("Reservations/formModifyReservation", compact("users"), compact("ouvrages"))->with("reservation", $reservation);
     }
 
     /**

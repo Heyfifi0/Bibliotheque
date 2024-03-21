@@ -13,7 +13,7 @@ class ReservationController extends Controller
     public function index()
     {
         $reservations = Reservation::all();
-        return view ("reservation", compact("reservations"));       
+        return view ("Reservations/reservation", compact("reservations"));       
     }
 
 
@@ -57,9 +57,15 @@ class ReservationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Reservation $reservation)
+    public function update(Request $request)
     {
-        //
+        $reservation = Reservation::find($request->input('id'));
+        var_dump($request->input('id'));
+        $reservation->id_utilisateur = $request->input('user');
+        $reservation->id_ouvrage = $request->input('ouvrage');
+        $reservation->date_reservation = $request->input('date');
+        $reservation->save();
+        return redirect('/reservations');         
     }
 
     /**

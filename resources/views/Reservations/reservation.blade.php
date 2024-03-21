@@ -26,7 +26,7 @@
     {{$uneReservation->utilisateur->nom}}</td>
     <td>{{$uneReservation->date_reservation}}</td>
     <td><button><a href="{{ url('/reservations-delete').'/'.$uneReservation->id_reservation}}">Supprimer</a></button></td>
-    <td><button a href="">Modifier</button></td>
+    <td><button><a href="{{ url('/reservations-modify-form').'/'.$uneReservation->id_reservation}}">Modifier</a></button></td>
 </tr>
     @endforeach
 <!--</form>-->

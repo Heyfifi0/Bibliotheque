@@ -45,6 +45,7 @@ Route::get('/reservations', [\App\Http\Controllers\ReservationController::class,
 Route::get('/reservations-create-form', [\App\Http\Controllers\formCreateReservationController::class, 'index']);
 Route::post('/reservations-create', [\App\Http\Controllers\ReservationController::class, 'create']);
 Route::get('/reservations-modify-form/{id}', [\App\Http\Controllers\formModifyReservationController::class, 'index']);
+Route::post('/reservation-modify', [\App\Http\Controllers\ReservationController::class, 'update']);
 Route::get('/reservations-delete/{id}', [\App\Http\Controllers\ReservationController::class, 'destroy'])->name('reservation.delete');
 
 //test table pivot
