@@ -33,7 +33,7 @@ class Ouvrage extends Model
 
     
     public function genres(){
-        return $this->belongsToMany(Genre::class,'genre_classe','id_ouvrage','id_genre');
+        return $this->belongsToMany(Genre::class,'genre_ouvrages','id_ouvrage','id_genre');
     }
     
     public function editeurs(){

@@ -27,5 +27,12 @@ Route::get('/uti', function () {
 
 //test table pivot
 Route::get('/genre', function () {
-    return App\Models\Ouvrage::find(1)->genres();
+    return App\Models\Ouvrage::find(1)->genres()->get();
 });
+
+Route::get('/userCreate', [\App\Http\Controllers\UtilisateurController::class,'userC']) ;
+Route::post('/userCreate/enreg',[\App\Http\Controllers\UtilisateurController::class,'enregistre']);
+Route::get('/userListe', [\App\Http\Controllers\UtilisateurController::class,'userL'])->name('userListe');
+Route::get('/userUpdate/{id}',[\App\Http\Controllers\UtilisateurController::class,'userUpdate']);
+Route::post('/userUpdate/update/{id}',[\App\Http\Controllers\UtilisateurController::class,'userUpdateTraitement']);
+Route::get('/userDelete/{id}',[\App\Http\Controllers\UtilisateurController::class,'delete']);

@@ -63,4 +63,90 @@ class UtilisateurController extends Controller
     {
         //
     }
+
+    public function userL(){
+        //équivaut à select * from loi;
+        $users=Utilisateur::all(); 
+        // dd pour dump and die. Affiche le contenu du curseur
+    
+    
+        //renvoie vers la vue listelois
+        return view('users.userListe', compact('users'));
+            
+    }
+
+    public function userC(){
+
+        return view('users.userCreate');
+    }
+
+    public function enregistre(Request $request){
+        $user =new Utilisateur;
+        $user->nom = $request->nom;
+        $user->prenom=$request->prenom;
+        $user->date_naissance = $request->date_naissance;
+        $user->email = $request->email;
+        $user->mot_de_passe = $request->mot_de_passe;
+        $user->adresse = $request->adresse;
+        $user->code_postal = $request->code_postal;
+        $user->ville = $request->ville;
+        $user->reception_newsletter = 0;
+        if($request->reception_newsletter == "on")
+            $user->reception_newsletter = 1;
+        //$user->reception_newsletter = $request->reception_newsletter;
+        $user->save();
+        return redirect()->route('userListe');
+    }
+
+    public function delete(Request $request){
+        $user=Utilisateur::find($request->id);
+        $user->delete();
+        return redirect('/userListe')->with('status','Utilisateur supprimé');
+    }
+
+    public function userUpdate(Request $request){
+        $id= $request->id;
+        $user=Utilisateur::find($id);
+        return view('users.userUpdate', ['user'=>$user]);
+    }
+
+    public function userUpdateTraitement(Request $request){
+       //système de validation pour que tous les champs soient saisis
+        $request->validate([
+            
+            'nom'=>'required',
+            'prenom'=>'required',
+            'date_naissance'=>'required',
+            'email'=>'required',
+            'adresse'=>'required',
+            'code_postal'=>'required',
+            'ville'=>'required',
+            
+        ]);
+        
+        $user=Utilisateur::find($request->id);
+        //dd($user);
+        $user->nom=$request->nom;
+        $user->prenom=$request->prenom;
+        $user->date_naissance=$request->date_naissance;
+        $user->email=$request->email;
+        $user->adresse=$request->adresse;
+        $user->code_postal=$request->code_postal;
+        $user->ville=$request->ville;
+        //dd($request->reception_newsletter);
+        
+        
+        if ($request->reception_newsletter == "0" || $request->reception_newsletter == "1"){
+          $user->reception_newsletter = 1;  
+        }
+        else{
+            $user->reception_newsletter = 0;
+        }
+            
+            
+        $user->update();
+        
+        return redirect('/userListe')->with('status','Uilisateur modifiée');
+        
+    }
 }
