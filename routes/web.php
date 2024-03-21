@@ -1,6 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EmpruntController;
+use App\Http\Controllers\AbonnementController;
+use App\Http\Controllers\AuteurController;
+use App\Http\Controllers\EditeurController;
+use App\Http\Controllers\GenreController;
+use App\Http\Controllers\OuvrageController;
+use App\Http\Controllers\ReservationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,5 +34,29 @@ Route::get('/uti', function () {
 
 //test table pivot
 Route::get('/genre', function () {
-    return App\Models\Ouvrage::find(1)->genres();
+    return App\Models\Ouvrage::find(1)->genres()->get();
 });
+
+Route::resource('/emprunts', EmpruntController::class);
+
+// Auteurs
+Route::resource('/auteurs', AuteurController::class);
+
+// Abonnements
+Route::resource('/abonnements', AbonnementController::class);
+
+// Editeurs
+Route::resource('/editeurs', EditeurController::class);
+
+// Genres
+Route::resource('/genres', GenreController::class);
+
+// Ouvrages
+Route::resource('/ouvrages', OuvrageController::class);
+
+// Réservations
+Route::resource('/reservations', ReservationController::class);
+
+Route::get('/', function () {
+    return view('accueil');
+})->name('accueil');
