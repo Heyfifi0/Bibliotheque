@@ -17,7 +17,6 @@
         <th>utilisateur</th>
         <th>date de la réservation</th>    
     </tr>
-    <!--<form method="get" action="#">-->
     @foreach($reservations as $uneReservation)
     <tr>
     <td>{{$uneReservation->id_reservation}}</td>
@@ -29,7 +28,6 @@
     <td><button><a href="{{ url('/reservations-modify-form').'/'.$uneReservation->id_reservation}}">Modifier</a></button></td>
 </tr>
     @endforeach
-<!--</form>-->
 </table>
 
 <a href="/reservations-create-form">Créer une réservation</a>
