@@ -15,11 +15,15 @@
             <label for="titre"> Titre : </label>
             <input type="text" class="form-control" id="titre" name="titre"  required value="{{ $ouvrage->titre }}"> </input>    
             
-            <select class="form-control" id="type" name="type" required value="{{ $ouvrage->type }}">
+            <select class="form-control" id="type" name="type" required >
+                    <option selected="selected">{{ $ouvrage->type }}</option>
+
                 <option value="livre">Livre</option>
                 <option value="ebook">E-book</option>
                 <option value="magazine">Magazine</option>
             </select>
+
+
 
             <select class="form-control" id="auteur" name="auteur" required>
                 @foreach($auteurs as $auteur)
