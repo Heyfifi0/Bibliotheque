@@ -17,8 +17,8 @@
         {{$unUtilisateur->prenom}}
         {{$unUtilisateur->nom}}
 </option>
-    
-    @endforeach    
+    @endforeach   
+     
 </select>
 
     <select name="ouvrage">
