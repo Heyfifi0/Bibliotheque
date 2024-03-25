@@ -16,11 +16,9 @@
             <input type="text" class="form-control" id="titre" name="titre"  required value="{{ $ouvrage->titre }}"> </input>    
             
             <select class="form-control" id="type" name="type" required >
-                    <option selected="selected">{{ $ouvrage->type }}</option>
-
-                <option value="livre">Livre</option>
-                <option value="ebook">E-book</option>
-                <option value="magazine">Magazine</option>
+                <option value="livre" {{ $ouvrage->type == 'livre' ? 'selected' : '' }}>Livre</option>
+                <option value="ebook" {{ $ouvrage->type == 'ebook' ? 'selected' : '' }}>E-book</option>
+                <option value="magazine" {{ $ouvrage->type == 'magazine' ? 'selected' : '' }}>Magazine</option>
             </select>
 
 
