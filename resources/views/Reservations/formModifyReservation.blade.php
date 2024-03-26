@@ -1,30 +1,26 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="{{asset('css/bootstrap.min.css')}}" rel='stylesheet' type='text/css'> 
-    <title>Réservation</title>
-</head>
-<body>
-<h1>Modifier la réservation</h1>
+
+@extends('layout.layout')
+@section('content')
+
+
+
 
 <form action="/reservation-modify" method="post">
     @csrf
 
-    <table>
+    <table class="table-auto">
         <tr>
-            <th>identifiant</th>
-            <th>utilisateur</th>
-            <th>ouvrage</th>
-            <th>date</th>
+            <th class="border-b dark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">identifiant</th>
+            <th class="border-b dark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">utilisateur</th>
+            <th class="border-b dark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">ouvrage</th>
+            <th class="border-b dark:border-slate-600 font-medium p-4 pl-8 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">date</th>
         </tr>
-        <tr>
+        <tr class="hover:bg-gray-100">
             <!--id de la réservation
                 ne peut pas être modifié, mais sert à récupérer la réservation à modifier dans la page d'après
             -->
-            <td><input type="text" name="id" value={{$reservation->id_reservation}} readonly></input></td>
-            <td>
+            <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400"><input type="text" name="id" value={{$reservation->id_reservation}} readonly></input></td>
+            <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">
 <!-- sélection de l'utilisateur
         Il y a une condition pour vérifier si l'utilisateur de chaque option est celui qui a fait la réservation
 -->                
@@ -45,7 +41,7 @@
     @endforeach    
 </select>
 </td>
-<td>
+<td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">
     <!-- sélection de l'ouvrage
         Il y a une condition pour vérifier si l'ouvrage de chaque option est celui qui est réservé
 --> 
@@ -64,13 +60,14 @@
     @endforeach    
     </select>
 </td>
-<td>
+<td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">
     <!--sélection de la date, par défaut celle de la réservation-->
-    <input type="date" name="date" value={{$reservation->date_reservation}}></input>
+    <input class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded" type="date" name="date" value={{$reservation->date_reservation}}></input>
 </td>
 </tr>
 </table>
-    <input type="submit" value="valider">    
+    <input type="submit" value="valider" class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded" type="button">    
 </form>
 
-</body>
+
+@endsection

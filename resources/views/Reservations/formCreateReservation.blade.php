@@ -1,14 +1,6 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="{{asset('css/bootstrap.min.css')}}" rel='stylesheet' type='text/css'> 
-    <title>Réservation</title>
-</head>
-<body>
-<h1>Créer une réservation</h1>
 
+@extends('layout.layout')
+@section('content')
 <form action="/reservations-create" method="post">
     @csrf
     <select name="user">
@@ -32,3 +24,5 @@
 
     <input type="submit" value="valider">
 </form>
+
+@endsection
