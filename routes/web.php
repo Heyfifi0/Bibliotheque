@@ -27,5 +27,5 @@ Route::get('/uti', function () {
 
 //test table pivot
 Route::get('/genre', function () {
-    return App\Models\Ouvrage::find(1)->genres();
+    return App\Models\Ouvrage::find(1)->genres()->get();
 });
