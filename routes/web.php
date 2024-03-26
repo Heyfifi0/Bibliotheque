@@ -4,6 +4,7 @@ use App\Http\Controllers\AuteurController;
 use App\Http\Controllers\EditeurController;
 use App\Http\Controllers\OuvrageController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GenreController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,9 @@ Route::resource('/auteurs', AuteurController::class);
 // Editeurs
 Route::resource('/editeurs', EditeurController::class);
 
+Route::resource('/genres', GenreController::class);
+
+
 
 
 //route pour tester la connexion à la base de données
@@ -42,6 +46,12 @@ Route::get('/uti', function () {
 });
 
 //test table pivot
-Route::get('/genre', function () {
+/*Route::get('/genre', function () {
     return App\Models\Ouvrage::find(1)->genres()->get();
 });
+*/
+
+
+
+
+
