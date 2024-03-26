@@ -12,7 +12,7 @@ class EditeurController extends Controller
      */
     public function index()
     {
-        $editeurs = Editeur::orderBy('id_editeur')->paginate(2);
+        $editeurs = Editeur::orderBy('id_editeur')->paginate(5);
 
         return view('editeurs.index', compact('editeurs'));
     }
