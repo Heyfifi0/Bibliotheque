@@ -12,7 +12,7 @@ class AuteurController extends Controller
      */
     public function index()
     {
-        $auteurs = Auteur::paginate(15); //Récupère les auteurs + paginate
+        $auteurs = Auteur::paginate(12); //Récupère les auteurs + paginate
         return view('auteur.index', compact('auteurs'));
     }
 
