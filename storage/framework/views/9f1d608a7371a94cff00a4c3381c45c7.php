@@ -1,13 +1,11 @@
-@extends('layout.layout')
-
-@section('content')
+<?php $__env->startSection('content'); ?>
 
 
 <form action="/userListe">
         <input class="bouton" type="submit" value="Retour à la liste"/>
     </form>
     <h1>Saisie d'un Utilisateur</h1>
-    <form id='formCreateUser' action ='userCreate/enreg' method="POST">@csrf
+    <form id='formCreateUser' action ='userCreate/enreg' method="POST"><?php echo csrf_field(); ?>
         <!-- Label nom -->
         <div class="w-72">
             <div class="relative w-full min-w-[200px] h-10">
@@ -96,4 +94,5 @@
 </body>
 </html>
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout.layout', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /home/deb/Documents/biblio/Bibliotheque/resources/views/users/userCreate.blade.php ENDPATH**/ ?>
