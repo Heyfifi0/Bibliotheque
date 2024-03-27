@@ -1,10 +1,15 @@
 
-    
+    body {
+        display: flex;
+        flex-direction: column;
+        height: 100vh; /* Ensure the container takes up the full viewport height */
+        margin: 0; /* Remove default margin */
+    }
     /* Style général pour la table */
     table {
         width: 90%; /* Adjust the table width as needed */
         padding: 30px; /* Add padding around the table */
-        margin-top: 20px;
+        margin-top: 80px;
     }
 
     /* Style pour les en-têtes de table */
@@ -27,7 +32,7 @@
         flex-direction: column; /* Stack table and paginator vertically */
         justify-content: center;
         align-items: left; /* Center the table horizontally */
-        margin-top: 50px;
+       
     }
     
     @media (max-width: 400px) {
@@ -40,21 +45,16 @@
     /* Style pour le titre */
     .title-container {
     text-align: left;
-    margin: 20px 0; /* Adjust margins as needed */
-    padding: 10px; /* Adjust padding as needed */
+    margin: 10px 0; /* Adjust margins as needed */
+   
     font-size: 36px;
     font-weight: bold;
     margin-bottom: 50px;
-    margin-left: 200px;
+    margin-left: 210px;
 }
 
 
-    /* Style pour le titre */
-    .title {
-        text-align: left;
-        margin: 20px 0; /* Ajustez les marges selon vos besoins */
-    }
-
+    
 /* Style pour le paginateur */
 .pagination-container {
     display: flex;
@@ -90,9 +90,3 @@
     color: white;
 }
 
-/* Style pour le conteneur de la table */
-.table-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-}
