@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ asset('/css/css_auteur_ind.css') }}">
 </head>
 <body>
+<div class="container">
 <div class="title-container">
     <h1>Liste des auteurs</h1>
 </div >
@@ -75,6 +76,7 @@
 </table>
 <div class="pagination-container">
     {{ $auteurs->links() }}
+</div>
 </div>
 </div>
 </body>

@@ -5,11 +5,19 @@
         height: 100vh; /* Ensure the container takes up the full viewport height */
         margin: 0; /* Remove default margin */
     }
+
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+    }
     /* Style général pour la table */
     table {
         width: 90%; /* Adjust the table width as needed */
-        padding: 30px; /* Add padding around the table */
-        margin-top: 80px;
+      
+        margin-top: 30px;
     }
 
     /* Style pour les en-têtes de table */
