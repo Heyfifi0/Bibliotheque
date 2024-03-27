@@ -47,24 +47,3 @@
 logo{
     width: 100px;
 }
-
-#formCreateGenre *{
-    margin: 5px;
-}
-
-#formUpdateGenre *{
-    margin: 5px;
-}
-
-#formCreateGenre input{
-    border: 1px solid
-}
-
-#formUpdateGenre input{
-    border: 1px solid
-}
-
-
-logo{
-    width: 100px;
-}
