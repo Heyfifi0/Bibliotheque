@@ -1,13 +1,17 @@
+@extends('layout.layout')
+@section('content')
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="{{ asset('/css/css_auteur_ed.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/css/css_auteur_cre.css') }}">
 </head>
 <body>
-<h1>Ajout d'un auteur</h1>
+<div class="form-container">
+<h2>Ajout d'un auteur</h2>
 <form action="{{ route('auteurs.store') }}" method="post">
 @csrf
 
@@ -20,5 +24,7 @@
 <a href="javascript:history.back()" class="back-button">Retour</a>
 <button type="submit" class="btn btn-primary"> Créer </button> 
 </form>
+</div>
 </body>
 </html>
+@endsection

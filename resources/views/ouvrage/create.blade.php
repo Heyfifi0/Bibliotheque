@@ -1,20 +1,25 @@
+@extends('layout.layout')
+@section('content')
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/css_ouvrage_cre.css') }}">
+
     <title>Document</title>
 </head>
 <body>
-    <h1>Ajout d'un ouvrage</h1>
-    <form action="{{ route('ouvrages.store') }}" method="post">
+    <div class= "form-container">
+    <h2>Ajout d'un ouvrage</h2>
+    <form  action="{{ route('ouvrages.store') }}" method="post">
         @csrf 
         <div class="form-group"> 
             <label for="titre"> Titre : </label>
-            <input type="text" class="form-control" id="titre" name="titre" required> </input>    
+            <input type="text" class="form-control" id="titre" name="titre" required> </input>
             
-            <select class="form-control" id="type" name="type" required>
+            <div class="select">
+            <select class="form-control" id="type" name="type">
                 <option value="">Sélectionnez un type</option>
                 <option value="livre">Livre</option>
                 <option value="ebook">E-book</option>
@@ -42,7 +47,11 @@
                 @endforeach
             </select>
         </div>
+        </div>
+        <a href="javascript:history.back()" class="back-button">Retour</a>
         <button type="submit" class="btn btn-primary"> Créer</button>
     </form>
+</div>
 </body>
 </html>
+@endsection

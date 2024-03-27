@@ -1,4 +1,5 @@
-
+@extends('layout.layout')
+@section('content')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,4 +25,5 @@
 </form>
 </body>
 </html>
+@endsection
 

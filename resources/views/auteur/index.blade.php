@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="{{ asset('/css/css_auteur_ind.css') }}">
+
 </head>
 <body>
 <div class="container">
@@ -75,7 +76,7 @@
        
 </table>
 <div class="pagination-container">
-    {{ $auteurs->links() }}
+    {{ $auteurs->links('pagination::bootstrap-4') }}
 </div>
 </div>
 </div>
