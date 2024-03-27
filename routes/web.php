@@ -49,3 +49,5 @@ Route::get('/uti', function () {
 Route::get('/genre', function () {
     return App\Models\Ouvrage::find(1)->genres()->get();
 });
+
+Route::get('/recherche_ouvrage', [OuvrageController::class, 'index']);

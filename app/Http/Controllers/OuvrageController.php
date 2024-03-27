@@ -13,7 +13,8 @@ class OuvrageController extends Controller
      */
     public function index()
     {
-        //
+        $ouvrages = Ouvrage::all();
+        return view('cherche_ouvrage', compact('ouvrages'));
     }
 
     /**
