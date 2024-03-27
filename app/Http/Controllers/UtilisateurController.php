@@ -81,6 +81,18 @@ class UtilisateurController extends Controller
     }
 
     public function enregistre(Request $request){
+        $request->validate([
+            
+            'nom'=>'required',
+            'prenom'=>'required',
+            'date_naissance'=>'required',
+            'email'=>'required',
+            'adresse'=>'required',
+            'code_postal'=>'required',
+            'ville'=>'required',
+            
+        ]);
+        
         $user =new Utilisateur;
         $user->nom = $request->nom;
         $user->prenom=$request->prenom;
@@ -103,6 +115,18 @@ class UtilisateurController extends Controller
         $user->delete();
         return redirect('/userListe')->with('status','Utilisateur supprimé');
     }
+
+    public function userValidate(Request $request){
+        $user=Utilisateur::find($request->id);
+        if($user->statut == "en attente")
+            $user->statut="actif";
+        else
+            $user->statut="en attente";
+        $user->update();
+        return redirect('/userListe')->with('status','Compte Utilisateur activé');
+    }
+
+
 
     public function userUpdate(Request $request){
         $id= $request->id;
