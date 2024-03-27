@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/css_auteur_ed.css') }}">
 </head>
 <body>
-<h1>Nouveau auteur</h1>
+<h1>Ajout d'un auteur</h1>
 <form action="{{ route('auteurs.store') }}" method="post">
 @csrf
 
