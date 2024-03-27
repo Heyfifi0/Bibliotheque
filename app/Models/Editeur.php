@@ -13,14 +13,17 @@ class Editeur extends Model
     public $timestamps = false;
     //public $incrementing = false;
     protected $fillable=[
-        'id_editeur',
         'libelle'
     ];
 
     use HasFactory;
 
+    /**
+     * Permet d'accéder aux ouvrages de l'éditeur.
+    */
     public function ouvrages() : HasMany
     {
+        // L'éditeur a 1.* ouvrages
         return $this->hasMany(Ouvrage::class, 'id_editeur');
     }
 }

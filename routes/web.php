@@ -6,6 +6,7 @@ use App\Http\Controllers\EditeurController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\OuvrageController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\ConnexionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +24,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('accueil');
 })->name('accueil');
+
+Route::get('/dashboard', function() {
+    return view('admin.dashboard');
+})->name('dashboard');
+
+// Route::post('/login', )
 
 // Auteurs
 Route::resource('/auteurs', AuteurController::class);
@@ -42,19 +49,19 @@ Route::resource('/ouvrages', OuvrageController::class);
 // Réservations
 Route::resource('/reservations', ReservationController::class);
 
-
+// Authentification à placer ici
 
 
 //route pour tester la connexion à la base de données
-Route::get('/testbd', function () {
-    return view('testBD');
-});
-//test retour données
-Route::get('/uti', function () {
-    return App\Models\Utilisateur::all();
-});
+// Route::get('/testbd', function () {
+//     return view('testBD');
+// });
+// //test retour données
+// Route::get('/uti', function () {
+//     return App\Models\Utilisateur::all();
+// });
 
-//test table pivot
-Route::get('/genre', function () {
-    return App\Models\Ouvrage::find(1)->genres()->get();
-});
+// //test table pivot
+// Route::get('/genre', function () {
+//     return App\Models\Ouvrage::find(1)->genres()->get();
+// });

@@ -1,4 +1,4 @@
-@extends('layout.layout')
+@extends('admin.layout')
 
 @section('title', 'Ajouter un éditeur')
 

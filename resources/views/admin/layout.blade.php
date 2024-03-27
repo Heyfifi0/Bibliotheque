@@ -9,7 +9,7 @@
 </head>
 <body class="flex">
     <div class="navbar">
-        @include('components.navbar')
+        @include('admin.components.navbar')
     </div>
 
 

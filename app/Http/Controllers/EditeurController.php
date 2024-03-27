@@ -14,7 +14,7 @@ class EditeurController extends Controller
     {
         $editeurs = Editeur::orderBy('id_editeur')->paginate(5);
 
-        return view('editeurs.index', compact('editeurs'));
+        return view('admin.editeurs.index', compact('editeurs'));
     }
 
     /**
@@ -22,7 +22,7 @@ class EditeurController extends Controller
      */
     public function create()
     {
-        return view('editeurs.create');
+        return view('admin.editeurs.create');
     }
 
     /**
@@ -44,7 +44,7 @@ class EditeurController extends Controller
      */
     public function show(Editeur $editeur)
     {
-        return view('editeurs.show', compact('editeur'));
+        return view('admin.editeurs.show', compact('editeur'));
     }
 
     /**
@@ -52,7 +52,7 @@ class EditeurController extends Controller
      */
     public function edit(Editeur $editeur)
     {
-        return view('editeurs.edit', compact('editeur'));
+        return view('admin.editeurs.edit', compact('editeur'));
     }
 
     /**
