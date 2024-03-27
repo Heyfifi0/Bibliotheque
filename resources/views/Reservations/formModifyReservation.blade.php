@@ -3,9 +3,10 @@
 @section('content')
 
 
+<div>
+    <h1 class="text-5xl font-serif text-slate-500">modifier une réservation</h1>
 
-
-<form action="/reservation-modify" method="post">
+<form action="/reservation-modify" method="post" class="mt-5">
     @csrf
 
     <table class="table-auto">
@@ -62,12 +63,14 @@
 </td>
 <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">
     <!--sélection de la date, par défaut celle de la réservation-->
-    <input class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded" type="date" name="date" value={{$reservation->date_reservation}}></input>
+    <input class="bg-gray-300 hover:bg-gray-400 text-slate-500 font-bold py-2 px-4 rounded" type="date" name="date" value={{$reservation->date_reservation}}></input>
 </td>
 </tr>
 </table>
     <input type="submit" value="valider" class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded" type="button">    
 </form>
+<div>
 
+<a href="/reservations"><button class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded mt-5">retour</button></a>
 
 @endsection
