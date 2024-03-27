@@ -15,8 +15,8 @@ class OuvrageController extends Controller
      */
     public function index()
     {
-        $ouvrages = Ouvrage::all();
-        return view('auteur.index', compact('ouvrages'));
+        $livres = Ouvrage::all();
+        return view('auteur.index', compact('livres'));
     }
 
     /**
