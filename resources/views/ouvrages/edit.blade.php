@@ -35,7 +35,7 @@
                 @endforeach
             </select>
 
-            <select class="form-control" id="editeur" name="id_editeur" required>
+            <select class="form-control" id="editeur" name="editeur" required>
             @foreach($editeurs as $editeur)
                 <option value="{{ $editeur->id_editeur }}" {{ $ouvrage->id_editeur == $editeur->id_editeur ? 'selected' : '' }}>{{ $editeur->libelle }}</option>
             @endforeach
