@@ -5,7 +5,7 @@
 
     <h1>Liste des utilisateurs ! </h1><br>
     <form action="userCreate">
-        <input class="bouton" type="submit" value="Ajouter un utilisateur"/>
+        <input class="boutonInput" type="submit" value="Ajouter un utilisateur"/>
     </form>
 
     <table class="shadow-lg bg-white border-collapse">
@@ -23,12 +23,60 @@
         <th class="border px-8 py-4"><p>{{$user['reception_newsletter']}}</th>
         <td>
             @if($user->statut == "en attente")
-                <p class="bouton"><a href="/userValide/{{$user->id_utilisateur}}"  tabindex="-1" role="button" >Valider</a></p>
+                <p class="bouton"><a href="/userValide/{{$user->id_utilisateur}}"  tabindex="-1" role="button" class="bouton">Valider</a></p>
             @else
-            <p class="bouton"> <a href="/userDesactive/{{$user->id_utilisateur}}" tabindex="-1" role="button" >Désactiver</a></p>
+            <p class="bouton"> <a href="/userDesactive/{{$user->id_utilisateur}}" tabindex="-1" role="button" class="bouton">Désactiver</a></p>
             @endif
-            <p class="bouton"> <a href="/userUpdate/{{$user->id_utilisateur}}"  tabindex="-1" role="button" >Modifier</a></p>
-            <p class="bouton"> <a href="/userDelete/{{$user->id_utilisateur}}" tabindex="-1" role="button" >Supprimer</a></p></td></tr>
+            <p class="bouton"> <a href="/userUpdate/{{$user->id_utilisateur}}"  tabindex="-1" role="button" class="bouton">Modifier</a></p>
+            <p class="bouton"> <a href="/userDelete/{{$user->id_utilisateur}}" tabindex="-1" role="button" class="bouton">Supprimer</a></p></td></tr>
         @endforeach
-    </table>     
+    </table>  
+    <div class="d-flex justify-content-center">
+        {{ $users->links('pagination::bootstrap-4') }}
+    </div>
+
+    
+    <div class="flex justify-center my-8">
+        <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+            {{-- Previous Page Link --}}
+            @if ($users->onFirstPage())
+                <span
+                    class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
+                    aria-disabled="true" aria-label="@lang('pagination.previous')">
+                    {!! __('pagination.previous') !!}
+                </span>
+            @else
+                <a href="{{ $users->previousPageUrl() }}"
+                    class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
+                    {!! __('pagination.previous') !!}
+                </a>
+            @endif
+
+            {{-- Pagination Elements --}}
+            @foreach ($users->getUrlRange(1, $users->lastPage()) as $page => $url)
+                @if ($page === $users->currentPage())
+                    <span aria-current="page"
+                        class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-indigo-500 text-sm font-medium text-white hover:bg-indigo-600">{{ $page }}</span>
+                @else
+                    <a href="{{ $url }}"
+                        class="relative inline-flex items-center px-4 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50">{{ $page }}</a>
+                @endif
+            @endforeach
+
+            {{-- Next Page Link --}}
+            @if ($users->hasMorePages())
+                <a href="{{ $users->nextPageUrl() }}"
+                    class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500">
+                    {!! __('pagination.next') !!}
+                </a>
+            @else
+                <span
+                    class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500"
+                    aria-disabled="true" aria-label="@lang('pagination.next')">
+                    {!! __('pagination.next') !!}
+                </span>
+            @endif
+        </nav>
+    </div>
+
     @endsection
