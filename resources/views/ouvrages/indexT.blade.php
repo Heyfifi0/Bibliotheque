@@ -1,14 +1,6 @@
 @extends('layout.layout')
 @section('content')
 
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="{{ asset('/css/index.css') }}">
-	<title>Ouvrages</title>
-
-</head>
 
     <div class="container">
 		<div class="table-responsive">
@@ -24,10 +16,9 @@
                             <th>Auteurs</th>
                             <th>Types</th>
                             <th>Genres</th>
-                            <th>
-                            					
-							<a href="{{ route('ouvrages.create') }}" class="btn btn-success" data-toggle="modal" style="display: flex; align-items: center;"><i class="material-icons" style="width:50px;">&#xE147;</i> <span>Ajouter un ouvrage</span></a>				
-                        </th>
+                            <th>				
+							    <a href="{{ route('ouvrages.create') }}" class="btn btn-success" data-toggle="modal" style="display: flex; align-items: center;"><i class="material-icons" style="width:50px;">&#xE147;</i> <span>Ajouter un ouvrage</span></a>				
+                            </th>
                         </tr>
                     </thead>
                     <tbody>

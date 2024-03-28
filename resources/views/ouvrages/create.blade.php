@@ -1,22 +1,13 @@
 @extends('layout.layout')
+{{-- Cette ligne étend un fichier de layout nommé layout.blade.php. --}}
 @section('content')
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{{ asset('/css/create.css') }}">
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-
-    <title>Ouvrages</title>
-</head>
-<body>
+{{-- Cette section est où le contenu principal de la page sera inséré. --}}
 <div class="form-container">
     <h1>Ajout d'un ouvrage</h1>
     <form action="{{ route('ouvrages.store') }}" method="post">
+    {{-- Ce formulaire enverra une requête POST à la route nommée ouvrages.store lorsqu'il sera soumis. --}}
         @csrf 
+        {{-- Inclut un jeton CSRF pour la sécurité. --}}
         <div class="form-group"> 
             {{-- Champ de saisie pour le titre --}}
             <label for="titre" style="margin-top:30px"> Titre : </label>
@@ -49,7 +40,6 @@
                     @endforeach
                 </select>
             </div>
-
             {{-- Sélection de l'éditeur, choix unique --}}
             <label for="titre" style="margin-top:10px"> Editeur : </label>
             <select class="form-control" id="editeur" name="editeur" required>
@@ -60,21 +50,23 @@
             </select>
         </div>
         <button type="submit" class="btn btn-primary"> Créer</button>
+        {{-- Ce bouton soumet le formulaire lorsqu'il est cliqué. --}}
     </form>
     <a href="javascript:history.back()" class="back-button">Retour</a>
-    </div>
-</body>
-</html>
+    {{-- Ce lien permet à l'utilisateur de revenir à la page précédente sans soumettre le formulaire. --}}
+</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+{{-- Ces lignes incluent jQuery et Select2, un plugin jQuery pour améliorer les éléments select. --}}
 <script>
-$(document).ready(function() {
-    $('#auteur').select2({
-        placeholder: "Sélectionnez un ou plusieurs auteurs"
+    $(document).ready(function() {
+        $('#auteur').select2({
+            placeholder: "Sélectionnez un ou plusieurs auteurs"
+        });
+        $('#genre').select2({
+            placeholder: "Sélectionnez un ou plusieurs genres"
+        });
     });
-    $('#genre').select2({
-        placeholder: "Sélectionnez un ou plusieurs genres"
-    });
-});
 </script>
+{{-- Ce script initialise Select2 sur les éléments select des auteurs et des genres. --}}
 @endsection
