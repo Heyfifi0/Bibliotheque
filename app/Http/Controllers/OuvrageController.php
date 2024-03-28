@@ -18,8 +18,8 @@ class OuvrageController extends Controller
      */
     public function index()
     {
-        $livres = Ouvrage::paginate(15); // Affiche 10 ouvrages par page
-        return view('ouvrages.index', compact('livres'));
+        $livres = Ouvrage::paginate(10); // Affiche 10 ouvrages par page
+        return view('ouvrages.indexT', compact('livres'));
     }
 
     /**
@@ -118,6 +118,8 @@ class OuvrageController extends Controller
     public function destroy($id)
     {
         $livre = Ouvrage::findOrFail($id);
+        $livre->auteurs()->detach();
+        $livre->genres()->detach();
         $livre->delete();
     
         return redirect('/ouvrages')->with('success', 'Livre supprimé avec succès');    }

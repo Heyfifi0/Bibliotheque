@@ -2,7 +2,7 @@
 @section('content')
     <h1 style="text-align:center;">Liste des ouvrages</h1>
     <table style="margin-left: auto; margin-right: auto;background-color:#D3D3D3;">
-        <t style="text-align:left;">
+        <tr style="text-align:left;">
             <th >Titres</th>
             <th>Editeurs</th>
             <th>Auteurs</th>

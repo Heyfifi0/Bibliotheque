@@ -5,12 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ config('app.name') }}</title>
-</head>
-<body>
-    @include('components.navbar')
+    <title>@yield('title')</title>
+ 
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">
 
-    <div class="flex justify-center h-screen">
+</head>
+<body class="flex">
+    <div class="navbar">
+        @include('components.navbar')
+    </div>
+
+
+    <div class="flex-1 justify-center ml-10 mt-2">
         @yield('content')
     </div>
 </body>
