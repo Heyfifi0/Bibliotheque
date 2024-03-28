@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuteurController;
 use App\Http\Controllers\EditeurController;
 use App\Http\Controllers\OuvrageController;
+use App\Http\Controllers\ReservationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,6 +31,9 @@ Route::resource('/auteurs', AuteurController::class);
 // Editeurs
 Route::resource('/editeurs', EditeurController::class);
 
+// Réservations
+Route::resource('/reservations', ReservationController::class);
+
 
 
 //route pour tester la connexion à la base de données
@@ -42,7 +46,7 @@ Route::get('/uti', function () {
 });
 
 //page de gestion des réservations
-Route::get('/reservations', [\App\Http\Controllers\ReservationController::class, 'index']);
+//Route::get('/reservations', [\App\Http\Controllers\ReservationController::class, 'index']);
 //formulaire de création de réservation
 Route::get('/reservations-create-form', [\App\Http\Controllers\formCreateReservationController::class, 'index']);
 //créé la réservation du formulaire puis redirige sur la page réservations

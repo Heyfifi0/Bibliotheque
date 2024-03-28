@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use App\Models\Genre;
+use App\Models\Editeur;
+use App\Models\Auteur;
 
 class Ouvrage extends Model
 {
@@ -37,7 +39,7 @@ class Ouvrage extends Model
     }
 
     public function editeurs(){
-        return $this->belongsTo(Editeur::class);
+        return $this->belongsTo(Editeur::class, 'id_editeur', 'id_editeur');
     }
 
 }
