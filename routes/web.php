@@ -50,4 +50,8 @@ Route::get('/genre', function () {
     return App\Models\Ouvrage::find(1)->genres()->get();
 });
 
-Route::get('/recherche_ouvrage', [OuvrageController::class, 'index']);
+//Route::get('/recherche_ouvrage', [OuvrageController::class, 'index']);
+Route::get('/recherche_ouvrage', function() {
+    $ouvrages = App\Models\Ouvrage::all();
+    return view('cherche_ouvrage', compact('ouvrages'));
+});

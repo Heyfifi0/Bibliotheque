@@ -41,31 +41,29 @@ class Type_abonnementController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Type_abonnement $id)
+    public function show(Type_abonnement $type_abonnement)
     {
-        $type_abonnement = Type_abonnement::find($id);
         return view('type_abonnements.show', compact('type_abonnement'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit(Type_abonnement $type_abonnement)
     {
-        $type_abonnement = Type_abonnement::find($id);
         return view('type_abonnements.edit', compact('type_abonnement'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Type_abonnement $type_abonnement)
     {
         $request->validate([
             'nom' => 'required|max:255',
             'prix' => 'required|max:255'
         ]);
-        $type_abonnement = Type_abonnement::find($id);
+    
         $type_abonnement->update($request->all());
         return redirect()->route('type_abonnements.index')
         ->with('success', 'Type Abonnement updated successfully.');
@@ -74,9 +72,8 @@ class Type_abonnementController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(Type_abonnement $type_abonnement)
     {
-        $type_abonnement = Type_abonnement::find($id);
         $type_abonnement->delete();
         return redirect()->route('type_abonnements.index')
           ->with('success', 'Type Abonnement deleted successfully');

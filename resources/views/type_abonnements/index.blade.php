@@ -1,85 +1,53 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Type Abonnements</title>
-<link rel="stylesheet" href="{{ asset('/css/index.css') }}">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script>
-$(document).ready(function(){
-	// Activate tooltip
-	$('[data-toggle="tooltip"]').tooltip();
-	
-	// Select/Deselect checkboxes
-	var checkbox = $('table tbody input[type="checkbox"]');
-	$("#selectAll").click(function(){
-		if(this.checked){
-			checkbox.each(function(){
-				this.checked = true;                        
-			});
-		} else{
-			checkbox.each(function(){
-				this.checked = false;                        
-			});
-		} 
-	});
-	checkbox.click(function(){
-		if(!this.checked){
-			$("#selectAll").prop("checked", false);
-		}
-	});
-});
-</script>
-</head>
-<body>
-    <div class="container">
-		<div class="table-responsive">
-			<div class="table-wrapper">
-				<div class="table-title">
-					<div class="row">
-						<div class="col-xs-6">
-							<h2>Liste <b>Type d'Abonnements</b></h2>
-						</div>
-						<div class="col-xs-6">
-							<a href="{{ route('type_abonnements.create') }}" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Ajouter un Type d'Abonnement</span></a>				
-						</div>
-					</div>
-				</div>
-				 <table class="table table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <th>ID Type Abonnement</th>
-                            <th>Nom</th>
-                            <th>Prix</th>
+@extends('layout.layout')
+@section('content')
+<div class="container mx-auto">
+    <div class="overflow-x-auto">
+        <div class="bg-white shadow-md rounded my-6">
+            <div class="flex justify-between items-center px-6 py-4">
+                <div class="flex">
+                    <h2 class="text-2xl font-bold">Liste <span class="text-green-600">Type d'Abonnements</span></h2>
+                </div>
+                <div class="flex">
+                    <a href="{{ route('type_abonnements.create') }}" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
+                        <span class="flex items-center">
+                            <svg class="fill-current mr-2" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zm18.71-9.04a1 1 0 0 0 0-1.42l-2.34-2.34a1 1 0 0 0-1.42 0l-1.83 1.83 3.75 3.75 1.84-1.82z"/></svg>
+                            <span>Ajouter un Type d'Abonnement</span>
+                        </span>
+                    </a>
+                </div>
+            </div>
+            <table class="min-w-full table-auto">
+                <thead>
+                    <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                        <th class="py-3 px-6 text-left">ID Type Abonnement</th>
+                        <th class="py-3 px-6 text-left">Nom</th>
+                        <th class="py-3 px-6 text-left">Prix</th>
+                        <th class="py-3 px-6 text-left">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="text-gray-600 text-sm font-light">
+                    @foreach ($type_abonnements as $type_abonnement)
+                        <tr class="border-b border-gray-200 hover:bg-gray-100">
+                            <td class="py-3 px-6 text-left">{{ $type_abonnement->id_type_abonnement }}</td>
+                            <td class="py-3 px-6 text-left">{{ $type_abonnement->nom }}</td>
+                            <td class="py-3 px-6 text-left">{{ $type_abonnement->prix }}</td>
+							<td class="py-3 px-6 text-left flex">
+                                <a href="{{ route('type_abonnements.edit', $type_abonnement) }}" class="text-gray-500 hover:text-gray-700 mr-4" data-toggle="modal">
+                                    <svg class="fill-current" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zm18.71-9.04a1 1 0 0 0 0-1.42l-2.34-2.34a1 1 0 0 0-1.42 0l-1.83 1.83 3.75 3.75 1.84-1.82z"/></svg>
+                                </a>
+                                <form action="{{ route('type_abonnements.destroy', $type_abonnement) }}" method="post">
+                                    @csrf
+                                    @method("DELETE")
+                                    <button type="submit" class="text-red-500 hover:text-red-700">
+                                        <svg class="fill-current" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41l-1.41-1.41-5.59 5.59-5.59-5.59L5 6.41l5.59 5.59-5.59 5.59L6.41 19l5.59-5.59 5.59 5.59L19 17.59l-5.59-5.59z"/></svg>
+                                    </button>
+                                </form>
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($type_abonnements as $type_abonnement)
-                            <tr>
-                                <td>{{ $type_abonnement->id_type_abonnement }}</td>
-                                <td>{{ $type_abonnement->nom }}</td>
-                                <td>{{ $type_abonnement->prix }}</td>
-                                <td>
-                                    <a href="{{ route('type_abonnements.edit', $type_abonnement->id_type_abonnement) }}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                    <form action="{{ route('type_abonnements.destroy', $type_abonnement->id_type_abonnement) }}" method="post">
-                                        @csrf
-                                        @method("DELETE")
-                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-			</div>
-		</div>        
-    </div>
-</body>
-</html>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>        
+</div>
+@endsection

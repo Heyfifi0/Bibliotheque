@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Abonnement;
+use App\Models\Type_abonnement;
+use App\Models\Utilisateur;
 use Illuminate\Http\Request;
 
 class AbonnementController extends Controller
@@ -21,55 +23,58 @@ class AbonnementController extends Controller
      */
     public function create()
     {
-        return view('abonnements.create');
+        $type_abonnements = Type_abonnement::all();
+        $utilisateurs = Utilisateur::all();
+        return view('abonnements.create', compact('type_abonnements', 'utilisateurs'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
+        // Validation des données de la requête
         $request->validate([
-            'id_utilisateur' => 'required|max:255',
             'id_type_abonnement' => 'required|max:255',
+            'id_utilisateur' => 'required|max:255',
             'date_debut' => 'required|max:255',
             'date_fin' => 'required|max:255'
         ]);
+
         Abonnement::create($request->all());
+        // Redirection avec un message de succès
         return redirect()->route('abonnements.index')
-        ->with('success', 'Abonnement created successfully.');
+                        ->with('success', 'Abonnement créé avec succès.');
+                        
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Abonnement $id)
+    public function show(Abonnement $abonnement)
     {
-        $abonnement = Abonnement::find($id);
         return view('abonnements.show', compact('abonnement'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($id)
+    public function edit(Abonnement $abonnement)
     {
-        $abonnement = Abonnement::find($id);
-        return view('abonnements.edit', compact('abonnement'));
+        $type_abonnements = Type_abonnement::all();
+        $utilisateurs = Utilisateur::all();
+        return view('abonnements.edit', compact('abonnement', 'type_abonnements', 'utilisateurs'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Abonnement $abonnement)
     {
         $request->validate([
-            'id_utilisateur' => 'required|max:255',
             'id_type_abonnement' => 'required|max:255',
+            'id_utilisateur' => 'required|max:255',
             'date_debut' => 'required|max:255',
             'date_fin' => 'required|max:255'
-        ]);
-        $abonnement = Abonnement::find($id);
+        ]); 
+    
         $abonnement->update($request->all());
         return redirect()->route('abonnements.index')
         ->with('success', 'Abonnement updated successfully.');
@@ -78,9 +83,8 @@ class AbonnementController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(Abonnement $abonnement)
     {
-        $abonnement = Abonnement::find($id);
         $abonnement->delete();
         return redirect()->route('abonnements.index')
           ->with('success', 'Abonnement deleted successfully');
