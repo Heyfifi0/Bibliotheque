@@ -18,7 +18,7 @@ class OuvrageController extends Controller
      */
     public function index()
     {
-        $livres = Ouvrage::paginate(10); // Affiche 10 ouvrages par page
+        $livres = Ouvrage::paginate(6); // Affiche 10 ouvrages par page
         return view('ouvrages.indexT', compact('livres'));
     }
 
