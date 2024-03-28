@@ -1,6 +1,7 @@
 @extends('layout.layout')
+{{-- Cette ligne étend un fichier de layout de base nommé layout.blade.php. --}}
 @section('content')
-
+{{-- Cette section est où le contenu principal de la page sera inséré. --}}
 
     <div class="container">
 		<div class="table-responsive">
@@ -10,7 +11,9 @@
 				</div>
 				<table class="table table-striped table-hover">
                     <thead>
+                    {{-- Ce thead contient les en-têtes de la table. --}}
                         <tr>
+                        {{-- Ce tr représente une ligne de l'en-tête. --}}
                             <th>Titres</th>
                             <th>Editeurs</th>
                             <th>Auteurs</th>
@@ -19,10 +22,13 @@
                             <th>				
 							    <a href="{{ route('ouvrages.create') }}" class="btn btn-success" data-toggle="modal" style="display: flex; align-items: center;"><i class="material-icons" style="width:50px;">&#xE147;</i> <span>Ajouter un ouvrage</span></a>				
                             </th>
+                            {{-- Ce th contient un lien pour ajouter un nouvel ouvrage. --}}
                         </tr>
                     </thead>
                     <tbody>
+                    {{-- Ce tbody contient les données des ouvrages. --}}
                     @foreach($livres as $livre)
+                    {{-- Cette boucle parcourt chaque livre dans la collection $livres. --}}
                         <tr>
                             <td> {{ $livre->titre}}</td>
                             <td> {{ $livre->editeurs->libelle }}</td>
@@ -33,6 +39,7 @@
                                         ,
                                     @endif
                                 @endforeach
+                                {{-- Ce td affiche les auteurs du livre. --}}
                             </td>
                             <td> {{ $livre->type}}  </td> 
                             <td> 
@@ -42,6 +49,7 @@
                                         ,
                                     @endif
                                 @endforeach
+                                {{-- Ce td affiche les genres du livre. --}}
                             </td> 
                                 <td>
                                     <a href="{{ route('ouvrages.edit', $livre->id_ouvrage) }}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
@@ -50,6 +58,7 @@
                                         @method("DELETE")
                                         <button type="submit" onclick="return confirm('Voulez vous vraiment supprimer cet ouvrage?')" class="btn btn-danger btn-sm">Delete</button>
                                     </form>
+                                    {{-- Ce td contient les liens pour éditer ou supprimer le livre. --}}
                                 </td>
                             </tr>
                         @endforeach
@@ -59,6 +68,7 @@
 		</div>        
     </div>
     <div class="flex justify-center my-8">
+    {{-- Ce div contient la pagination. --}}
         <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
             {{-- Previous Page Link --}}
             @if ($livres->onFirstPage())
