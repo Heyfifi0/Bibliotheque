@@ -71,7 +71,13 @@ class ConnexionController extends Controller
         {
             $request->session()->regenerate();
 
-            return redirect()->route('dashboard')->with('success', 'Vous êtes connecté.');
+            if(Auth::user()->statut === 'gestionnaire')
+            {
+                return redirect()->route('dashboard')->with('success', 'Vous êtes connecté en tant qu\'administrateur.');
+            }
+
+            return redirect()->route('welcome')->with('success', 'Vous êtes connecté.');
+
         }
 
         return back()->withErrors([
@@ -93,8 +99,6 @@ class ConnexionController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerate();
 
-        return redirect()->route('login')->with('success', 'Vous vous êtes déconnecté.');
-
-
+        return redirect()->route('home')->with('success', 'Vous vous êtes déconnecté.');
     }
 }

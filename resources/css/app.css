@@ -18,10 +18,22 @@
 /* Classes custom */
 @layer components {
     .navbar {
-        @apply left-0 flex h-screen w-48 flex-col bg-gray-700 shadow-lg;
+        @apply left-0 flex h-screen w-48 flex-col bg-gray-700 shadow-lg justify-between;
+    }
+
+    .navbar ul {
+        @apply flex flex-col p-4;
     }
 
     .navbar-item {
-        @apply text-xl text-left text-white m-4 hover:underline;
+        @apply text-lg text-white my-2;
+    }
+
+    .navbar-item a {
+        @apply block px-4 py-2 transition duration-300 ease-in-out hover:bg-gray-600 rounded;
+    }
+
+    .logout-btn {
+        @apply block w-full px-4 py-2 text-left text-white bg-red-600 hover:bg-red-700 rounded mt-20;
     }
 }

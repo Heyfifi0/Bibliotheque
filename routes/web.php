@@ -22,31 +22,9 @@ use Illuminate\Support\Facades\Route;
 
 // Accueil
 
-Route::get('/dashboard', function() {
-    return view('admin.dashboard');
-})->name('dashboard');
 
-// Route::post('/login', )
 
-// Auteurs
-Route::resource('/auteurs', AuteurController::class);
-
-// Abonnements
-Route::resource('/abonnements', AbonnementController::class);
-
-// Editeurs
-Route::resource('/editeurs', EditeurController::class);
-
-// Genres
-Route::resource('/genres', GenreController::class);
-
-// Ouvrages
-Route::resource('/ouvrages', OuvrageController::class);
-
-// Réservations
-Route::resource('/reservations', ReservationController::class);
-
-// Authentification à placer ici
+// Authentification
 Route::group(['middleware' => 'guest'], function() {
     Route::get('/register', [ConnexionController::class, 'register'])->name('register');
     Route::post('/register', [ConnexionController::class, 'store'])->name('store');
@@ -56,25 +34,44 @@ Route::group(['middleware' => 'guest'], function() {
 
 Route::post('/logout', [ConnexionController::class, 'logout'])->name('logout');
 
-Route::get('/dashboard', function () {
-    return view('admin.dashboard');
-})->name('dashboard');
-
 Route::get('/', function () {
-    return view('user.home');
+    return view('home');
 })->name('home');
 
 
-//route pour tester la connexion à la base de données
-// Route::get('/testbd', function () {
-//     return view('testBD');
-// });
-// //test retour données
-// Route::get('/uti', function () {
-//     return App\Models\Utilisateur::all();
-// });
+// Routes administrateur (utilisant la Gate 'admin')
+Route::middleware(['auth', 'can:admin'])->prefix('/admin')->group(function () {
 
-// //test table pivot
-// Route::get('/genre', function () {
-//     return App\Models\Ouvrage::find(1)->genres()->get();
-// });
+    Route::get('/', function() {
+        return redirect()->route('dashboard');
+    });
+
+    // Dashboard
+    Route::get('/dashboard', function() {
+        return view('admin.dashboard');
+    })->name('dashboard');
+
+    // Auteurs
+    Route::resource('/auteurs', AuteurController::class);
+
+    // Abonnements
+    Route::resource('/abonnements', AbonnementController::class);
+
+    // Editeurs
+    Route::resource('/editeurs', EditeurController::class);
+
+    // Genres
+    Route::resource('/genres', GenreController::class);
+
+    // Ouvrages
+    Route::resource('/ouvrages', OuvrageController::class);
+
+    // Reservations
+    Route::resource('/reservations', ReservationController::class);
+
+});
+
+// Test
+Route::get('/welcome', function () {
+    return view('welcome');
+})->name('welcome');
