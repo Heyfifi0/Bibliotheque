@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use App\Models\Genre;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Ouvrage extends Model
 {
@@ -15,11 +16,10 @@ class Ouvrage extends Model
     public $timestamps = false;
     //public $incrementing = false;
     protected $fillable=[
-        'id_ouvrage',
         'id_editeur',
         'code_isbn',
         'titre',
-        'type'
+        'type',
     ];
     // avec type ENUM('livre','magazine','ebook')
 
@@ -32,12 +32,12 @@ class Ouvrage extends Model
     }
 
 
-    public function genres(){
+    public function genres() : BelongsToMany{
         return $this->belongsToMany(Genre::class,'genre_ouvrages','id_ouvrage','id_genre');
     }
 
-    public function editeurs(){
-        return $this->belongsTo(Editeur::class);
+    public function editeurs() : BelongsTo{
+        return $this->belongsTo(Editeur::class, 'id_editeur');
     }
 
 }

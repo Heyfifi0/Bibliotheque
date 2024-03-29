@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Editeur;
 use App\Models\Ouvrage;
 use App\Models\Genre;
 use Illuminate\Http\Request;
@@ -9,11 +10,13 @@ use Illuminate\Http\Request;
 class OuvrageController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Affiche les ouvrages.
      */
     public function index()
     {
-        //
+        $ouvrages = Ouvrage::all();
+
+        return view('admin.ouvrages.index', compact('ouvrages'));
     }
 
     /**
@@ -21,7 +24,10 @@ class OuvrageController extends Controller
      */
     public function create()
     {
-        //
+        $genres = Genre::all();
+        $editeurs = Editeur::all();
+
+        return view('admin.ouvrages.create', compact('genres', 'editeurs'));
     }
 
     /**
@@ -29,7 +35,19 @@ class OuvrageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $created = $request->validate([
+            'titre' => 'required',
+            'type' => 'required',
+            'code_isbn' => 'required',
+            'genres' => 'required',
+            'editeur' => 'required',
+        ]);
+
+
+        Ouvrage::create($created)->genres()->attach($created['genres']);
+
+        return redirect()->route('ouvrages.index')->with('success', 'Ouvrage ajouté avec succès.');
     }
 
     /**
@@ -38,7 +56,7 @@ class OuvrageController extends Controller
     public function show(Ouvrage $ouvrage)
     {
         //
-        
+
     }
 
     /**

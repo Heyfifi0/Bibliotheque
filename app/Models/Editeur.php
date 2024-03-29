@@ -11,7 +11,7 @@ class Editeur extends Model
     protected $table='editeurs';
     protected $primaryKey='id_editeur';
     public $timestamps = false;
-    //public $incrementing = false;
+
     protected $fillable=[
         'libelle'
     ];
@@ -23,7 +23,7 @@ class Editeur extends Model
     */
     public function ouvrages() : HasMany
     {
-        // L'éditeur a 1.* ouvrages
+        // L'éditeur a 1 ou plusieurs ouvrages.
         return $this->hasMany(Ouvrage::class, 'id_editeur');
     }
 }

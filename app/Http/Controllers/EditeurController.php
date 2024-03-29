@@ -30,11 +30,12 @@ class EditeurController extends Controller
      */
     public function store(Request $request)
     {
-        $newEditeur = $request->validate([
+        $created = $request->validate([
             'libelle' => 'required'
         ]);
 
-        Editeur::create($newEditeur)->save();
+        // Création de l'éditeur
+        Editeur::create($created)->save();
 
         return redirect()->route('editeurs.index')->with('success', 'Editeur créé avec succès!');
     }
@@ -60,13 +61,12 @@ class EditeurController extends Controller
      */
     public function update(Request $request, Editeur $editeur)
     {
-        $updated = $request->validate([
+        $updates = $request->validate([
             'libelle' => 'required'
         ]);
 
-        // dd($validated);
-
-        $editeur->update($updated);
+        // Modification de l'éditeur
+        $editeur->update($updates);
 
         return redirect()->route('editeurs.index')->with('success', 'Editeur créé avec succès!');
     }

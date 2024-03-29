@@ -20,7 +20,7 @@ class Utilisateur extends Model
         'prenom',
         'date_naissance',
         'email',
-        'mot_de_passe',
+        'password',
         'adresse',
         'code_postal',
         'ville',

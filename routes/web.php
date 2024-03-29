@@ -21,9 +21,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Accueil
-Route::get('/', function () {
-    return view('accueil');
-})->name('accueil');
 
 Route::get('/dashboard', function() {
     return view('admin.dashboard');
@@ -50,6 +47,22 @@ Route::resource('/ouvrages', OuvrageController::class);
 Route::resource('/reservations', ReservationController::class);
 
 // Authentification à placer ici
+Route::group(['middleware' => 'guest'], function() {
+    Route::get('/register', [ConnexionController::class, 'register'])->name('register');
+    Route::post('/register', [ConnexionController::class, 'store'])->name('store');
+    Route::get('/login', [ConnexionController::class, 'login'])->name('login');
+    Route::post('/login', [ConnexionController::class, 'authenticate'])->name('authenticate');
+});
+
+Route::post('/logout', [ConnexionController::class, 'logout'])->name('logout');
+
+Route::get('/dashboard', function () {
+    return view('admin.dashboard');
+})->name('dashboard');
+
+Route::get('/', function () {
+    return view('user.home');
+})->name('home');
 
 
 //route pour tester la connexion à la base de données
