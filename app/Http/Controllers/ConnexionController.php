@@ -19,6 +19,9 @@ class ConnexionController extends Controller
 
     public function store(Request $request)
     {
+        // Récupération des informations du formulaire
+        // (voir views/auth/register)
+
         $validated = $request->validate([
             'nom' => 'required',
             'prenom' => 'required',
@@ -30,8 +33,7 @@ class ConnexionController extends Controller
             'password' => 'required | min:8 | confirmed'
         ]);
 
-        // L'utilisateur est crée à partir de ces informations
-
+        // Création de l'utilisateur
         Utilisateur::create([
             'nom' => $validated['nom'],
             'prenom' => $validated['prenom'],
@@ -44,8 +46,6 @@ class ConnexionController extends Controller
         ]);
 
         return redirect()->route('dashboard')->with('success', 'Compte crée avec succès.');
-
-
     }
 
     /**
@@ -62,6 +62,8 @@ class ConnexionController extends Controller
 
     public function authenticate(Request $request)
     {
+        // Récupération des informations du formulaire
+        // (voir views/auth/login)
         $credentials = $request->validate([
             'email' => 'required | email',
             'password' => 'required | min:8'
@@ -71,6 +73,7 @@ class ConnexionController extends Controller
         {
             $request->session()->regenerate();
 
+            // Check du statut de l'utilisateur (gestionnaire ou autre)
             if(Auth::user()->statut === 'gestionnaire')
             {
                 return redirect()->route('dashboard')->with('success', 'Vous êtes connecté en tant qu\'administrateur.');
@@ -80,12 +83,10 @@ class ConnexionController extends Controller
 
         }
 
+        // Retour en arrière en cas d'erreur
         return back()->withErrors([
             'email' => 'Identifiants incorrects'
         ])->onlyInput('email');
-
-
-
     }
 
     /**
@@ -96,6 +97,7 @@ class ConnexionController extends Controller
     {
         Auth::logout();
 
+        // Reset de la session
         $request->session()->invalidate();
         $request->session()->regenerate();
 

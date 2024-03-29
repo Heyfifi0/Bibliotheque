@@ -20,10 +20,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Accueil
-
-
-
 // Authentification
 Route::group(['middleware' => 'guest'], function() {
     Route::get('/register', [ConnexionController::class, 'register'])->name('register');
@@ -31,9 +27,9 @@ Route::group(['middleware' => 'guest'], function() {
     Route::get('/login', [ConnexionController::class, 'login'])->name('login');
     Route::post('/login', [ConnexionController::class, 'authenticate'])->name('authenticate');
 });
-
 Route::post('/logout', [ConnexionController::class, 'logout'])->name('logout');
 
+// Route de base
 Route::get('/', function () {
     return view('home');
 })->name('home');

@@ -12,7 +12,7 @@ class EditeurController extends Controller
      */
     public function index()
     {
-        $editeurs = Editeur::orderBy('id_editeur')->paginate(5);
+        $editeurs = Editeur::orderBy('id_editeur')->paginate(5); // Pagination par 5
 
         return view('admin.editeurs.index', compact('editeurs'));
     }
@@ -30,6 +30,8 @@ class EditeurController extends Controller
      */
     public function store(Request $request)
     {
+        // Récupération des informations du formulaire
+        // (voir views/admin/editeurs/create)
         $created = $request->validate([
             'libelle' => 'required'
         ]);
@@ -61,6 +63,8 @@ class EditeurController extends Controller
      */
     public function update(Request $request, Editeur $editeur)
     {
+        // Récupération des informations du formulaire
+        // (voir views/admin/editeurs/edit)
         $updates = $request->validate([
             'libelle' => 'required'
         ]);
