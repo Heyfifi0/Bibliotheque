@@ -3,7 +3,7 @@
 @section('content')
 {{-- Cette section est où le contenu principal de la page sera inséré. --}}
 <div class="form-container">
-    <h1>Ajout d'un ouvrage</h1>
+    <h1 class="table-title" style="margin: -30px -30px 10px;">Ajout d'un ouvrage</h1>
     <form action="{{ route('ouvrages.store') }}" method="post">
     {{-- Ce formulaire enverra une requête POST à la route nommée ouvrages.store lorsqu'il sera soumis. --}}
         @csrf 
