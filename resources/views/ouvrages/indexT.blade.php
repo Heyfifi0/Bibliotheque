@@ -51,12 +51,12 @@
                                 @endforeach
                                 {{-- Ce td affiche les genres du livre. --}}
                             </td> 
-                                <td>
-                                    <a href="{{ route('ouvrages.edit', $livre->id_ouvrage) }}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                <td class="d-flex " style="justify-content-center;">
+                                    <a href="{{ route('ouvrages.edit', $livre->id_ouvrage) }}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit" style="margin-top:5px">&#xE254;</i></a>
                                     <form action="{{ route('ouvrages.destroy', $livre->id_ouvrage) }}" method="post">
                                         @csrf
                                         @method("DELETE")
-                                        <button type="submit" onclick="return confirm('Voulez vous vraiment supprimer cet ouvrage?')" class="btn btn-danger btn-sm">Delete</button>
+                                        <button type="submit" onclick="return confirm('Voulez vous vraiment supprimer cet ouvrage?')" class="btn btn-sm"><i class="fas fa-trash text-danger"></i></button>
                                     </form>
                                     {{-- Ce td contient les liens pour éditer ou supprimer le livre. --}}
                                 </td>
