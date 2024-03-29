@@ -7,7 +7,7 @@ use Illuminate\Pagination\Paginator;
 use App\Models\Genre;
 use App\Models\Auteur;
 use App\Models\Editeur;
-
+use Session;
 
 use Illuminate\Http\Request;
 
@@ -18,8 +18,8 @@ class OuvrageController extends Controller
      */
     public function index()
     {
-        $livres = Ouvrage::paginate(6); // Affiche 10 ouvrages par page
-        return view('ouvrages.index', compact('livres'));
+        $livres = Ouvrage::paginate(6); // Affiche 6 ouvrages par page
+        return view('ouvrages.index', compact('livres'));// compact va  récupérer la variable livres pour lui ajouter une fonction dans la vue index
     }
 
     /**
@@ -31,8 +31,7 @@ class OuvrageController extends Controller
         $genres = Genre::all(); // Récupère tous les genres
         $editeurs = Editeur::all(); // Récupère tous les genres
 
-        return view('ouvrages.create', compact('auteurs', 'genres', 'editeurs'));    }
-
+        return view('ouvrages.create', compact('auteurs', 'genres', 'editeurs'));}// compact va  récupérer les variables, pour la vue create
     /**
      * Store a newly created resource in storage.
      */
@@ -60,7 +59,7 @@ class OuvrageController extends Controller
 
         // Ajout des genres à la table pivot
         $ouvrage->genres()->attach($request->get('genre'));
-    
+        Session::flash('success', 'ouvrage ajouté');
         return redirect('/ouvrages')->with('success','Ouvrage créé avec succès');
     }
 
@@ -108,6 +107,7 @@ class OuvrageController extends Controller
 
         $ouvrage->save();
 
+        Session::flash('success', 'ouvrage mis à jour');
         // Redirect with success message
         return redirect()->route('ouvrages.index')->with('success', 'Ouvrage mis à jour avec succès');
     }

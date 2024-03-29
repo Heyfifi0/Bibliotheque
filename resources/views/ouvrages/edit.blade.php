@@ -4,9 +4,7 @@
 {{-- Cette section est où le contenu principal de la page sera inséré. --}}
 
 <div class="form-container">
-	    <div  style="margin: -30px -30px 10px;">
-            <h1>Edition d'un ouvrage</h1>
-        </div>
+            <h1 class="table-title" style="margin: -30px -30px 10px;">Edition d'un ouvrage</h1>
         <form action="{{ route('ouvrages.update', $ouvrage->id_ouvrage) }}" method="post"> 
         {{-- Ce formulaire enverra une requête POST à la route nommée ouvrages.update avec l'ID de l'ouvrage à mettre à jour. --}}
             @csrf

@@ -3,11 +3,25 @@
 @section('content')
 {{-- Cette section est où le contenu principal de la page sera inséré. --}}
 
+@if (Session::has('success'))
+        <div id="alert-success" class="alert alert-success alert-dismissable fade show" role="alert" style="margin-right:20px;">
+                <h4 class="alert-heading">Succès!</h4>
+                <p>{{ Session::get('success') }}</p>
+            <script>
+                setTimeout(function(){
+                    document.getElementById('alert-success').style.display = 'none';
+                }, 10000);
+            </script>
+        </div>  
+@endif
+{{-- Cette partie permet d'afficher un message de succès quand un ouvrage est ajouté --}}
+
+
     <div class="container">
 		<div class="table-responsive">
 			<div class="table-wrapper">
 				<div class="table-title">
-							<h1>Liste des ouvrages</h2>
+					<h1>Liste des ouvrages</h2>
 				</div>
 				<table class="table table-striped table-hover">
                     <thead>
@@ -109,4 +123,6 @@
                 </span>
             @endif
         </nav>
-    </div>@endsection
+        </div>
+ 
+    @endsection
