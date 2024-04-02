@@ -66,11 +66,12 @@ class UtilisateurController extends Controller
 
     public function userL(){
         //équivaut à select * from loi;
-        $users=Utilisateur::all(); 
+    //    $users=Utilisateur::all(); 
         // dd pour dump and die. Affiche le contenu du curseur
     
-    
+        $users=Utilisateur::paginate(4); 
         //renvoie vers la vue listelois
+        
         return view('users.userListe', compact('users'));
             
     }
@@ -83,7 +84,7 @@ class UtilisateurController extends Controller
     public function enregistre(Request $request){
         $request->validate([
             
-            'nom'=>'required',
+            'nom'=>'required | ',
             'prenom'=>'required',
             'date_naissance'=>'required',
             'email'=>'required',
@@ -92,7 +93,7 @@ class UtilisateurController extends Controller
             'ville'=>'required',
             
         ]);
-        
+
         $user =new Utilisateur;
         $user->nom = $request->nom;
         $user->prenom=$request->prenom;
