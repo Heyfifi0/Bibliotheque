@@ -25,8 +25,16 @@
         @apply text-xl text-left text-white m-4 hover:underline;
     }
 
-    .bouton {
+    
+    .boutonInput {
         @apply text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mb-1
+    }
+    
+    .bouton {
+        @apply block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mb-1;
+        margin: 10; /* Assurez-vous qu'il n'y a pas de marges */
+        padding: 0; /* Assurez-vous qu'il n'y a pas de rembourrage */
+        text-align: left;
     }
 
     /*
@@ -46,4 +54,71 @@
 
 #formUpdateUser .w-72{
     margin: 17px;
+}
+
+.bouton a{
+    padding: 10px !important;
+}
+
+
+.btn {
+    display: inline-block;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 20px;
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+    transition: transform 0.3s ease;
+  }
+
+  .btn-green {
+    background-color: #ff66c4;
+    color: white;
+  }
+
+  .btn-green:hover {
+    background-color: #ff29a3;
+    transform: scale(1.1);
+  }
+
+  .btn-red {
+    background-color: #ff9999;
+    color: white;
+  }
+
+  .btn-red:hover {
+    background-color: #ff4d4d;
+    transform: scale(1.1);
+  }
+
+  .btn-blue {
+    background-color: #99ccff;
+    color: white;
+  }
+
+  .btn-blue:hover {
+    background-color: #6699ff;
+    transform: scale(1.1);
+  }
+
+  .btn-yellow {
+    background-color: #ffff66;
+    color: #333;
+  }
+
+  .btn-yellow:hover {
+    background-color: #ffff00;
+    transform: scale(1.1);
+  }
+
+  /* Transition Button */
+.transition-btn {
+    transition: all 0.3s ease-in-out;
+}
+
+/* Hover Effect */
+.transition-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
 }
