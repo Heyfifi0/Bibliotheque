@@ -14,7 +14,7 @@ class Ouvrage extends Model
     protected $table='ouvrages';
     protected $primaryKey='id_ouvrage';
     public $timestamps = false;
-    //public $incrementing = false;
+
     protected $fillable=[
         'id_editeur',
         'code_isbn',
@@ -23,21 +23,32 @@ class Ouvrage extends Model
     ];
     // avec type ENUM('livre','magazine','ebook')
 
-    public function auteurs(){
-        return $this->belongsToMany(Auteur::class);
-    }
-
-    public function commentaires(){
-        return $this->belongsToMany(Commentaire::class);
-    }
-
-
+    /**
+     * Permet d'accéder aux genres de l'ouvrage.
+     * Utilise la table pivot 'genre_ouvrages'.
+     */
     public function genres() : BelongsToMany{
         return $this->belongsToMany(Genre::class,'genre_ouvrages','id_ouvrage','id_genre');
     }
 
+    /**
+     * Permet d'accéder aux éditeurs de l'ouvrage.
+     */
     public function editeurs() : BelongsTo{
         return $this->belongsTo(Editeur::class, 'id_editeur');
     }
 
+    /**
+     * Permet d'accéder aux auteurs de l'ouvrage.
+     */
+    public function auteurs(){
+        return $this->belongsToMany(Auteur::class);
+    }
+
+    /**
+     * Permet d'accéder aux commentaires de l'ouvrage.
+     */
+    public function commentaires(){
+        return $this->belongsToMany(Commentaire::class);
+    }
 }
