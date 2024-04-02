@@ -47,3 +47,16 @@
 logo{
     width: 100px;
 }
+
+/* Style du tableau */
+.table-auto {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.table-auto th,
+.table-auto td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
