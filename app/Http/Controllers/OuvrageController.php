@@ -37,15 +37,17 @@ class OuvrageController extends Controller
      */
     public function store(Request $request)
     {
-        /*$request->validate([
+        $request->validate([
             'titre' => 'required|max:255',
-            'type' => 'required|max:255',
+            /*'type' => 'required|max:255',
             'id_editeur' => 'required|max:255',
             'id_auteur' => 'required|array',
-            'id_genre' => 'required|array',
+            'id_genre' => 'required|array',*/
 
 
-        ]);*/
+        ],[
+            'titre.required' =>'Le champ est obligatoire.',
+        ]);
         $ouvrage = new Ouvrage([
             'titre' => $request->get('titre'),
             'type' => $request->get('type'),
