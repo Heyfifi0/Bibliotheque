@@ -36,8 +36,8 @@
             @endforeach
         </select>
 
-        <label for="editeur">Editeur</label>
-        <select name="editeur" id="editeur" class="mb-5">
+        <label for="id_editeur">Editeur</label>
+        <select name="id_editeur" id="id_editeur" class="mb-5">
             @foreach ($editeurs as $editeur)
                 <option value="{{ $editeur->id_editeur }}">{{ $editeur->libelle }}</option>
             @endforeach

@@ -7,6 +7,7 @@
     <h1>Liste des ouvrages</h1>
 
     {{-- Liste des éditeurs --}}
+    <p class="mt-5"><a href="{{ route('ouvrages.create') }}" class="text-blue-600 underline">Ajouter un ouvrage</a></p>
     <table>
         {{-- En-tête --}}
         <thead>
@@ -14,7 +15,7 @@
                 <th>ID</th>
                 <th>Editeur</th>
                 <th>Titre</th>
-                <th>ISBN</th>
+                {{-- <th>ISBN</th> --}}
                 <th>Type</th>
                 <th>Genre(s)</th>
             </tr>
@@ -27,21 +28,23 @@
                     <td>{{ $ouvrage->id_ouvrage }}</td>
                     <td>{{ $ouvrage->editeurs->libelle }}</td>
                     <td>{{ $ouvrage->titre }}</td>
-                    <td>{{ $ouvrage->code_isbn }}</td>
+                    {{-- <td>{{ $ouvrage->code_isbn }}</td> --}}
                     <td>{{ $ouvrage->type }}</td>
-                    @foreach ($ouvrage->genres as $genre)
-                        <td>{{ $genre->libelle }}</td>
-                    @endforeach
+                    <td>
+                        @foreach ($ouvrage->genres as $genre)
+                            {{ $genre->libelle }}
+                        @endforeach
+                    </td>
+
                 </tr>
             @endforeach
         </tbody>
     </table>
 
 
-    {{-- {{ $editeurs->links() }} --}}
+    {{ $ouvrages->links() }}
 
 
-    <p class="mt-5"><a href="{{ route('ouvrages.create') }}" class="text-blue-600 underline">Ajouter un ouvrage</a></p>
+
 
 @endsection
-

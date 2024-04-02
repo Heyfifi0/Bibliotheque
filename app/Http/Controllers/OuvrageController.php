@@ -14,7 +14,7 @@ class OuvrageController extends Controller
      */
     public function index()
     {
-        $ouvrages = Ouvrage::all();
+        $ouvrages = Ouvrage::orderBy('id_ouvrage', 'asc')->paginate(5);
 
         return view('admin.ouvrages.index', compact('ouvrages'));
     }
@@ -36,12 +36,14 @@ class OuvrageController extends Controller
     public function store(Request $request)
     {
 
+        // dd($request->all());
+
         $created = $request->validate([
             'titre' => 'required',
             'type' => 'required',
             'code_isbn' => 'required',
             'genres' => 'required',
-            'editeur' => 'required',
+            'id_editeur' => 'required',
         ]);
 
 
