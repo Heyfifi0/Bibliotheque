@@ -14,16 +14,18 @@ class OuvrageController extends Controller
      */
     public function index()
     {
+        // On récupère les ouvrages en paginant à 5
         $ouvrages = Ouvrage::orderBy('id_ouvrage', 'asc')->paginate(5);
 
         return view('admin.ouvrages.index', compact('ouvrages'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Affiche le formulaire de création d'ouvrage.
      */
     public function create()
     {
+        // On récupère les genres et les éditeurs
         $genres = Genre::all();
         $editeurs = Editeur::all();
 
@@ -31,13 +33,12 @@ class OuvrageController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Insère l'ouvrage crée dans la base de données.
      */
     public function store(Request $request)
     {
-
-        // dd($request->all());
-
+        // Récupération des informations du formulaire
+        // (voir views/admin/ouvrages/create)
         $created = $request->validate([
             'titre' => 'required',
             'type' => 'required',
@@ -46,14 +47,14 @@ class OuvrageController extends Controller
             'id_editeur' => 'required',
         ]);
 
-
+        // Création de l'éditeur et ajout dans la table pivot 'genre_ouvrages'
         Ouvrage::create($created)->genres()->attach($created['genres']);
 
         return redirect()->route('ouvrages.index')->with('success', 'Ouvrage ajouté avec succès.');
     }
 
     /**
-     * Display the specified resource.
+     * Affiche l'ouvrage spécifié.
      */
     public function show(Ouvrage $ouvrage)
     {
@@ -62,7 +63,7 @@ class OuvrageController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Affiche le formulaire de modification d'ouvrage.
      */
     public function edit(Ouvrage $ouvrage)
     {
@@ -70,7 +71,7 @@ class OuvrageController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Modifie l'ouvrage spécifié dans la base de données.
      */
     public function update(Request $request, Ouvrage $ouvrage)
     {
@@ -78,7 +79,7 @@ class OuvrageController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Supprime l'ouvrage spécifié de la base de données.
      */
     public function destroy(Ouvrage $ouvrage)
     {
