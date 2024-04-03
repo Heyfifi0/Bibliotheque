@@ -63,4 +63,23 @@ class UtilisateurController extends Controller
     {
         //
     }
+
+    public function userC(){
+
+        return view('userCreate');
+    }
+
+    public function enregistre(Request $request){
+        $user =new Utilisateur;
+        $user->nom = $request->nom;
+        $user->prenom=$request->prenom;
+        $user->ddn = $request->ddn;
+        $user->email = $request->email;
+        $user->mdp = $request->mdp;
+        $user->adresse = $request->adresse;
+        $user->cp = $request->cp;
+        $user->ville = $request->ville;
+        $loi->save();
+        return redirect()->route('userListe');
+    }
 }
