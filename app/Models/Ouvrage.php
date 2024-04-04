@@ -26,7 +26,7 @@ class Ouvrage extends Model
     // avec type ENUM('livre','magazine','ebook')
 
     public function auteurs(){
-        return $this->belongsToMany(Auteur::class);
+        return $this->belongsToMany(Auteur::class, 'auteur_ouvrages', 'id_ouvrage', 'id_auteur');
     }
 
     public function commentaires(){

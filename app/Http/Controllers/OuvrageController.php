@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Ouvrage;
 use App\Models\Genre;
+use App\Models\Editeur;
+use App\Models\Auteur;
 use Illuminate\Http\Request;
 
 class OuvrageController extends Controller
@@ -22,7 +24,10 @@ class OuvrageController extends Controller
      */
     public function create()
     {
-        //
+        $editeurs = Editeur::all();
+        $auteurs = Auteur::all();
+        $genres = Genre::all();
+        return view ("Ouvrages/createOuvrage", compact("editeurs", "auteurs", "genres"));   
     }
 
     /**
@@ -30,7 +35,24 @@ class OuvrageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request)->input('auteurs')[0];
+        try
+        {
+        $nouvelOuvrage = Ouvrage::create([
+            'id_editeur' => $request->input('editeur'),
+            'code_isbn' => $request->input('isbn'),
+            'titre' => $request->input('titre'),
+            'type' => $request->input('type'),
+        ]);
+        $nouvelOuvrage->auteurs()->attach($request->input('auteurs'));
+        $nouvelOuvrage->genres()->attach($request->input('genres'));
+        //retour sur la page des ouvrages
+        return redirect('/ouvrages');          
+        }
+        catch(QueryException $exception)
+        {
+          return redirect('/ouvrages');     
+        }
     }
 
     /**
