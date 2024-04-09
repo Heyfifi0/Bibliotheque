@@ -49,7 +49,7 @@ class OuvrageController extends Controller
             'id_editeur' => 'required',
         ]);
 
-        // Création de l'éditeur et ajout dans la table pivot 'genre_ouvrages'
+        // Création de l'ouvrage et ajout dans la table pivot 'genre_ouvrages'
         Ouvrage::create($created)->genres()->attach($created['genres']);
 
         return redirect()->route('ouvrages.index')->with('success', 'Ouvrage ajouté avec succès.');
