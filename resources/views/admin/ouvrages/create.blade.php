@@ -37,7 +37,7 @@
 
         {{-- Genres --}}
         <label for="genres">Genre(s)</label>
-        <select name="genres" id="genres" class="mb-5">
+        <select name="genres[]" id="genres" class="mb-5" multiple>
             @foreach ($genres as $genre)
                 <option value="{{ $genre->id_genre }}">{{ $genre->libelle }}</option>
             @endforeach

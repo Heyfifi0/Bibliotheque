@@ -37,6 +37,8 @@ class OuvrageController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
+
         // Récupération des informations du formulaire
         // (voir views/admin/ouvrages/create)
         $created = $request->validate([
@@ -83,6 +85,8 @@ class OuvrageController extends Controller
      */
     public function destroy(Ouvrage $ouvrage)
     {
-        //
+        $ouvrage->delete();
+
+        return redirect()->route('ouvrages.index');
     }
 }

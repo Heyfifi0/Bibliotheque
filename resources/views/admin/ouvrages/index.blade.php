@@ -22,6 +22,7 @@
                 <th>Type</th>
                 <th>Editeur</th>
                 <th>Genre(s)</th>
+                <th>Actions</th>
             </tr>
         </thead>
 
@@ -38,6 +39,13 @@
                         @foreach ($ouvrage->genres as $genre)
                             {{ $genre->libelle }}
                         @endforeach
+                    </td>
+                    <td>
+                        <form action="{{ route('ouvrages.destroy', $ouvrage) }}" method="post">
+                            @csrf
+                            @method('delete')
+                            <button type="submit" class="text-red-500" >Supprimer</button>
+                        </form>
                     </td>
                 </tr>
             @endforeach
