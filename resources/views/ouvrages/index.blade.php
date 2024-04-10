@@ -1,3 +1,4 @@
+
 @extends('layout.layout')
 {{-- Cette ligne étend un fichier de layout de base nommé layout.blade.php. --}}
 @section('content')
@@ -21,7 +22,7 @@
 		<div class="table-responsive">
 			<div class="table-wrapper">
 				<div class="table-title">
-					<h1>Liste des ouvrages</h2>
+					<h1 >Liste des ouvrages</h1>
 				</div>
 				<table class="table table-striped table-hover">
                     <thead>
@@ -42,7 +43,7 @@
                     <tbody>
                     {{-- Ce tbody contient les données des ouvrages. --}}
                     @foreach($livres as $livre)
-                    {{-- Cette boucle parcourt chaque livre dans la collection $livres. --}}
+                    {{-- Cette boucle parcourt la collection $livres. --}}
                         <tr>
                             <td> {{ $livre->titre}}</td>
                             <td> {{ $livre->editeurs->libelle }}</td>

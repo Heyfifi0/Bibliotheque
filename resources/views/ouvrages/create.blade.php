@@ -14,7 +14,7 @@
             <input type="text" class="form-control" id="titre" name="titre" required> </input>    
             
             {{-- Sélection du type d'ouvrage, choix multiple --}}
-            <label for="titre" > Type : </label>
+            <label for="Type" > Type : </label>
             <select class="form-control" id="type" name="type" required>
                 <option value="">Sélectionnez un type</option>
                 <option value="livre">Livre</option>
@@ -24,7 +24,7 @@
             
             {{-- Sélection des auteurs --}}
             <div style="margin-top:10px">
-                <label for="titre" > Auteurs : </label>
+                <label for="auteur" > Auteurs : </label>
                 <select class="form-control" id="auteur" name="auteur[]" required multiple>
                     @foreach($auteurs as $auteur)
                         <option value="{{ $auteur->id_auteur }}">{{ $auteur->nom }} {{ $auteur->prenom }}</option>
@@ -33,7 +33,7 @@
             </div>
             {{-- Sélection des genres --}}
             <div style="margin-top:10px">
-                <label for="titre" > Genres : </label>
+                <label for="genre" > Genres : </label>
                 <select class="form-control" id="genre" name="genre[]" required multiple>
                     @foreach($genres as $genre)
                         <option value="{{ $genre->id_genre }}">{{ $genre->libelle }}</option>
@@ -41,7 +41,7 @@
                 </select>
             </div>
             {{-- Sélection de l'éditeur, choix unique --}}
-            <label for="titre" style="margin-top:10px"> Editeur : </label>
+            <label for="editeur" style="margin-top:10px"> Editeur : </label>
             <select class="form-control" id="editeur" name="editeur" required>
                 <option >Sélectionnez un éditeur</option>
                 @foreach($editeurs as $editeur)

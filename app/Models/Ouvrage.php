@@ -23,7 +23,7 @@ class Ouvrage extends Model
     ];
 
     public function auteurs(){
-        return $this->belongsToMany(Auteur::class,'auteur_ouvrages', 'id_auteur', 'id_ouvrage');
+        return $this->belongsToMany(Auteur::class,'auteur_ouvrages', 'id_ouvrage', 'id_auteur' );
     }
 
     public function commentaires(){

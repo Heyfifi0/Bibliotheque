@@ -16,7 +16,7 @@
                     <input type="text" class="form-control" id="titre" name="titre"  required value="{{ $ouvrage->titre }}"> </input>    
                     {{-- Cette section crée une étiquette et un champ de saisie pour le titre de l'ouvrage, pré-rempli avec le titre actuel de l'ouvrage. --}}
 
-                    <label for="titre" style="margin-top:10px"> Type : </label>
+                    <label for="type" style="margin-top:10px"> Type : </label>
                     <select class="form-control" id="type" name="type"  required >
                     {{-- Cet élément select permet à l'utilisateur de choisir le type de l'ouvrage, avec l'option actuelle déjà sélectionnée. --}}
                         <option value="livre" {{ $ouvrage->type == 'livre' ? 'selected' : '' }}>Livre</option>
@@ -24,15 +24,16 @@
                         <option value="magazine" {{ $ouvrage->type == 'magazine' ? 'selected' : '' }}>Magazine</option>
                     </select>
                     
-                    <label for="titre" style="margin-top:10px"> Auteurs : </label>
+                    <label for="auteur" style="margin-top:10px"> Auteurs : </label>
                     <select class="form-control" id="auteur" name="auteur[]" style="margin-top:10px" required multiple>
                         @foreach($auteurs as $auteur)
-                            <option value="{{ $auteur->id_auteur }}" {{ $ouvrage->auteurs->contains($auteur->id_auteur) ? 'selected' : '' }}>{{ $auteur->nom }} {{ $auteur->prenom }}</option>
+                            <option value="{{ $auteur->id_auteur }}" {{ $ouvrage->auteurs->contains($auteur->id_auteur) ? 'selected' : '' }}>{{ $auteur->nom }} 
+                            {{ $auteur->prenom }}</option>
                         @endforeach
                     </select>
                     {{-- Select permet à l'utilisateur de sélectionner plusieurs auteurs pour l'ouvrage, avec les auteurs actuels déjà sélectionnés. --}}
                     
-                    <label for="titre" style="margin-top:10px"> Genres : </label>
+                    <label for="genre" style="margin-top:10px"> Genres : </label>
                     <select class="form-control" id="genre" name="genre[]" style="margin-top:10px" required multiple>
                         @foreach($genres as $genre)
                             <option value="{{ $genre->id_genre }}" {{ $ouvrage->genres->contains($genre->id_genre) ? 'selected' : '' }}>{{ $genre->libelle }}</option>
@@ -41,7 +42,7 @@
                     {{-- Select permet à l'utilisateur de sélectionner plusieurs genres pour l'ouvrage, avec les genres actuels déjà sélectionnés. --}}
 
                     {{-- Sélection de l'éditeur, choix unique --}}
-                    <label for="titre" style="margin-top:10px"> Editeur : </label>
+                    <label for="editeur" style="margin-top:10px"> Editeur : </label>
                     <select class="form-control" id="editeur" name="editeur" required>
                         @foreach($editeurs as $editeur)
                             <option value="{{ $editeur->id_editeur }}" {{ $ouvrage->id_editeur == $editeur->id_editeur ? 'selected' : '' }}>{{ $editeur->libelle }}</option>
