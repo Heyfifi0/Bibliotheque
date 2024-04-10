@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">
 
 @extends('layout.layout')
 {{-- Cette ligne étend un fichier de layout de base nommé layout.blade.php. --}}
@@ -22,7 +23,7 @@
 		<div class="table-responsive">
 			<div class="table-wrapper">
 				<div class="table-title">
-					<h1 >Liste des ouvrages</h1>
+					<h1 style= "font-size:40px;">Liste des ouvrages</h1>
 				</div>
 				<table class="table table-striped table-hover">
                     <thead>

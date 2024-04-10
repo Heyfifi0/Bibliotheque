@@ -1,9 +1,11 @@
+<link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">
+
 @extends('layout.layout')
 {{-- Cette ligne étend un fichier de layout nommé layout.blade.php. --}}
 @section('content')
 {{-- Cette section est où le contenu principal de la page sera inséré. --}}
 <div class="form-container">
-    <h1 class="table-title" style="margin: -30px -30px 10px;">Ajout d'un ouvrage</h1>
+    <h1 class="table-title" style="margin: -30px -30px 10px; font-size:40px;">Ajout d'un ouvrage</h1>
     <form action="{{ route('ouvrages.store') }}" method="post">
     {{-- Ce formulaire enverra une requête POST à la route nommée ouvrages.store lorsqu'il sera soumis. --}}
         @csrf 
@@ -49,7 +51,7 @@
                 @endforeach
             </select>
         </div>
-        <button type="submit" class="btn btn-primary"> Créer</button>
+        <button type="submit" class="btn btn-primary" style="background-color: #007bff;"> Créer</button>
         {{-- Ce bouton soumet le formulaire lorsqu'il est cliqué. --}}
     </form>
     <a href="javascript:history.back()" class="back-button">Retour</a>
