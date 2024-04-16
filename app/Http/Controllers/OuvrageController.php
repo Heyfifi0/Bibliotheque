@@ -70,7 +70,8 @@ class OuvrageController extends Controller
      */
     public function show(Ouvrage $ouvrage)
     {
-        //
+        
+        
         
     }
 
