@@ -61,6 +61,7 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 {{-- Ces lignes incluent jQuery et Select2, un plugin jQuery pour améliorer les éléments select. --}}
 <script>
+    
     $(document).ready(function() {
         $('#auteur').select2({
             placeholder: "Sélectionnez un ou plusieurs auteurs"
