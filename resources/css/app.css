@@ -2,13 +2,38 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+    h1 {
+        @apply text-2xl underline;
+    }
+    table {
+        @apply border border-black border-collapse mt-5 mb-5 w-[50rem];
+    }
+
+    td {
+        @apply p-4 border border-black;
+    }
+}
+
 /* Classes custom */
 @layer components {
     .navbar {
-        @apply fixed left-0 flex h-screen w-48 flex-col bg-gray-700 shadow-lg;
+        @apply left-0 flex h-screen w-48 flex-col bg-gray-700 shadow-lg justify-between;
+    }
+
+    .navbar ul {
+        @apply flex flex-col p-4;
     }
 
     .navbar-item {
-        @apply text-xl text-left text-white m-4 hover:underline;
+        @apply text-lg text-white my-2;
+    }
+
+    .navbar-item a {
+        @apply block px-4 py-2 transition duration-300 ease-in-out hover:bg-gray-600 rounded;
+    }
+
+    .logout-btn {
+        @apply block w-full px-4 py-2 text-left text-white bg-red-600 hover:bg-red-700 rounded mt-20;
     }
 }

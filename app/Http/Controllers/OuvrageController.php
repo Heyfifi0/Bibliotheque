@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Editeur;
 use App\Models\Ouvrage;
 use Illuminate\Pagination\Paginator;
 use App\Models\Genre;
@@ -14,7 +15,7 @@ use Illuminate\Http\Request;
 class OuvrageController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Affiche les ouvrages.
      */
     public function index()
     {
@@ -23,7 +24,7 @@ class OuvrageController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Affiche le formulaire de création d'ouvrage.
      */
     public function create()
     {
@@ -33,7 +34,7 @@ class OuvrageController extends Controller
 
         return view('ouvrages.create', compact('auteurs', 'genres', 'editeurs'));}// compact va  récupérer les variables, pour la vue create
     /**
-     * Store a newly created resource in storage.
+     * Insère l'ouvrage crée dans la base de données.
      */
     public function store(Request $request)
     {
@@ -70,13 +71,13 @@ class OuvrageController extends Controller
      */
     public function show(Ouvrage $ouvrage)
     {
-        
-        
-        
+
+
+
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Affiche le formulaire de modification d'ouvrage.
      */
     public function edit(Ouvrage $ouvrage)
     {
@@ -124,6 +125,6 @@ class OuvrageController extends Controller
         $livre->auteurs()->detach();
         $livre->genres()->detach();
         $livre->delete();
-    
+
         return redirect('/ouvrages')->with('success', 'Livre supprimé avec succès');    }
 }
