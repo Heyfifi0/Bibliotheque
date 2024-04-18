@@ -85,8 +85,14 @@ class OuvrageController extends Controller
         $editeurs = Editeur::all(); // Récupère tous les genres
         return view('ouvrages.edit', compact('ouvrage','auteurs', 'genres', 'editeurs'));
       }
+        $auteurs = Auteur::all(); // Récupère tous les auteurs
+        $genres = Genre::all(); // Récupère tous les genres
+        $editeurs = Editeur::all(); // Récupère tous les genres
+        return view('ouvrages.edit', compact('ouvrage','auteurs', 'genres', 'editeurs'));
+      }
 
     /**
+     * Update the specified resource {{ $livre->titre}}  in storage.
      * Update the specified resource {{ $livre->titre}}  in storage.
      */
     public function update(Request $request, $id)
@@ -118,6 +124,7 @@ class OuvrageController extends Controller
     /**
      * Remove the specified resource from storage.
      */
+    public function destroy($id)
     public function destroy($id)
     {
         $livre = Ouvrage::findOrFail($id);

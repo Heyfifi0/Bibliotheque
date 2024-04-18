@@ -9,12 +9,6 @@ use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\ConnexionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmpruntController;
-use App\Http\Controllers\AbonnementController;
-use App\Http\Controllers\AuteurController;
-use App\Http\Controllers\EditeurController;
-use App\Http\Controllers\GenreController;
-use App\Http\Controllers\OuvrageController;
-use App\Http\Controllers\ReservationController;
 
 /*
 |--------------------------------------------------------------------------

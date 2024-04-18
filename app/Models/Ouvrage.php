@@ -21,7 +21,6 @@ class Ouvrage extends Model
         'titre',
         'type',
     ];
-    // avec type ENUM('livre','magazine','ebook')
 
     /**
      * Permet d'accéder aux genres de l'ouvrage.

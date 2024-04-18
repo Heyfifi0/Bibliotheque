@@ -1,53 +1,40 @@
-<link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">
-
 @extends('layout.layout')
-{{-- Cette ligne étend un fichier de layout de base nommé layout.blade.php. --}}
 @section('content')
-{{-- Cette section est où le contenu principal de la page sera inséré. --}}
 
-@if (Session::has('success'))
-        <div id="alert-success" class="alert alert-success alert-dismissable fade show" role="alert" style="margin-right:20px;">
-                <h4 class="alert-heading">Succès!</h4>
-                <p>{{ Session::get('success') }}</p>
-            <script>
-                setTimeout(function(){
-                    document.getElementById('alert-success').style.display = 'none';
-                }, 10000);
-            </script>
-        </div>
-@endif
-{{-- Cette partie permet d'afficher un message de succès quand un ouvrage est ajouté --}}
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="{{ asset('/css/index.css') }}">
+	<title>Ouvrages</title>
 
+</head>
 
     <div class="container">
 		<div class="table-responsive">
 			<div class="table-wrapper">
 				<div class="table-title">
-					<h1 style= "font-size:40px;">Liste des ouvrages</h1>
+							<h2>Liste des ouvrages</h2>
 				</div>
 				<table class="table table-striped table-hover">
                     <thead>
-                    {{-- Ce thead contient les en-têtes de la table. --}}
                         <tr>
-                        {{-- Ce tr représente une ligne de l'en-tête. --}}
                             <th>Titres</th>
                             <th>Editeurs</th>
                             <th>Auteurs</th>
                             <th>Types</th>
                             <th>Genres</th>
                             <th>
-							    <a href="{{ route('ouvrages.create') }}" class="btn btn-success" data-toggle="modal" style="display: flex; align-items: center;"><i class="material-icons" style="width:50px;">&#xE147;</i> <span>Ajouter un ouvrage</span></a>
-                            </th>
-                            {{-- Ce th contient un lien pour ajouter un nouvel ouvrage. --}}
+                            					
+							<a href="{{ route('ouvrages.create') }}" class="btn btn-success" data-toggle="modal" style="display: flex; align-items: center;"><i class="material-icons" style="width:50px;">&#xE147;</i> <span>Ajouter un ouvrage</span></a>				
+                        </th>
                         </tr>
                     </thead>
                     <tbody>
-                    {{-- Ce tbody contient les données des ouvrages. --}}
                     @foreach($livres as $livre)
-                    {{-- Cette boucle parcourt la collection $livres. --}}
                         <tr>
                             <td> {{ $livre->titre}}</td>
-                            <td> {{ $livre->editeurs->libelle }}</td>
+                            <td> {{ $livre->editeurs }}</td>
                             <td>
                                 @foreach($livre->auteurs as $auteur)
                                     {{ $auteur->nom }} {{ $auteur->prenom }}
@@ -55,36 +42,32 @@
                                         ,
                                     @endif
                                 @endforeach
-                                {{-- Ce td affiche les auteurs du livre. --}}
                             </td>
-                            <td> {{ $livre->type}}  </td>
-                            <td>
+                            <td> {{ $livre->type}}  </td> 
+                            <td> 
                                 @foreach($livre->genres as $genre)
-                                    {{ $genre->libelle }}
+                                    {{ $genre->libelle }} 
                                     @if(!$loop->last)
                                         ,
                                     @endif
                                 @endforeach
-                                {{-- Ce td affiche les genres du livre. --}}
-                            </td>
-                                <td class="d-flex " style="justify-content-center;">
-                                    <a href="{{ route('ouvrages.edit', $livre->id_ouvrage) }}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit" style="margin-top:5px">&#xE254;</i></a>
+                            </td> 
+                                <td>
+                                    <a href="{{ route('ouvrages.edit', $livre->id_ouvrage) }}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
                                     <form action="{{ route('ouvrages.destroy', $livre->id_ouvrage) }}" method="post">
                                         @csrf
                                         @method("DELETE")
-                                        <button type="submit" onclick="return confirm('Voulez vous vraiment supprimer cet ouvrage?')" class="btn btn-sm"><i class="fas fa-trash text-danger"></i></button>
+                                        <button type="submit" onclick="return confirm('Voulez vous vraiment supprimer cet ouvrage?')" class="btn btn-danger btn-sm">Delete</button>
                                     </form>
-                                    {{-- Ce td contient les liens pour éditer ou supprimer le livre. --}}
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
 			</div>
-		</div>
+		</div>        
     </div>
     <div class="flex justify-center my-8">
-    {{-- Ce div contient la pagination. --}}
         <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
             {{-- Previous Page Link --}}
             @if ($livres->onFirstPage())
@@ -125,6 +108,4 @@
                 </span>
             @endif
         </nav>
-        </div>
-
-    @endsection
+    </div>@endsection
