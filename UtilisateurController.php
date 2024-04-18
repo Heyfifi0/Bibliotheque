@@ -66,14 +66,14 @@ class UtilisateurController extends Controller
 
     public function userL(){
         //équivaut à select * from loi;
-    //    $users=Utilisateur::all();
+    //    $users=Utilisateur::all(); 
         // dd pour dump and die. Affiche le contenu du curseur
-
-        $users=Utilisateur::paginate(4);
+    
+        $users=Utilisateur::paginate(4); 
         //renvoie vers la vue listelois
-
+        
         return view('users.userListe', compact('users'));
-
+            
     }
 
     public function userC(){
@@ -83,7 +83,7 @@ class UtilisateurController extends Controller
 
     public function enregistre(Request $request){
         $request->validate([
-
+            
             'nom'=>'required | ',
             'prenom'=>'required',
             'date_naissance'=>'required',
@@ -91,7 +91,7 @@ class UtilisateurController extends Controller
             'adresse'=>'required',
             'code_postal'=>'required',
             'ville'=>'required',
-
+            
         ]);
 
         $user =new Utilisateur;
@@ -138,7 +138,7 @@ class UtilisateurController extends Controller
     public function userUpdateTraitement(Request $request){
        //système de validation pour que tous les champs soient saisis
         $request->validate([
-
+            
             'nom'=>'required',
             'prenom'=>'required',
             'date_naissance'=>'required',
@@ -146,9 +146,9 @@ class UtilisateurController extends Controller
             'adresse'=>'required',
             'code_postal'=>'required',
             'ville'=>'required',
-
+            
         ]);
-
+        
         $user=Utilisateur::find($request->id);
         //dd($user);
         $user->nom=$request->nom;
@@ -159,19 +159,19 @@ class UtilisateurController extends Controller
         $user->code_postal=$request->code_postal;
         $user->ville=$request->ville;
         //dd($request->reception_newsletter);
-
-
+        
+        
         if ($request->reception_newsletter == "0" || $request->reception_newsletter == "1"){
-          $user->reception_newsletter = 1;
+          $user->reception_newsletter = 1;  
         }
         else{
             $user->reception_newsletter = 0;
         }
-
-
+            
+            
         $user->update();
-
+        
         return redirect('/userListe')->with('status','Uilisateur modifiée');
-
+        
     }
 }

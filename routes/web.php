@@ -87,6 +87,16 @@ Route::middleware(['auth', 'can:admin'])->prefix('/admin')->group(function () {
     //supprime une réservation
     Route::get('/reservations-delete/{id}', [\App\Http\Controllers\ReservationController::class, 'destroy'])->name('reservation.delete');
 
+
+    Route::get('/userCreate', [\App\Http\Controllers\UtilisateurController::class,'userC']) ;
+    Route::post('/userCreate/enreg',[\App\Http\Controllers\UtilisateurController::class,'enregistre']);
+    Route::get('/userListe', [\App\Http\Controllers\UtilisateurController::class,'userL'])->name('userListe');
+    Route::get('/userValide/{id}',[\App\Http\Controllers\UtilisateurController::class,'userValidate']);
+    Route::get('/userDesactive/{id}',[\App\Http\Controllers\UtilisateurController::class,'userValidate']);
+    Route::get('/userUpdate/{id}',[\App\Http\Controllers\UtilisateurController::class,'userUpdate']);
+    Route::post('/userUpdate/update/{id}',[\App\Http\Controllers\UtilisateurController::class,'userUpdateTraitement']);
+    Route::get('/userDelete/{id}',[\App\Http\Controllers\UtilisateurController::class,'delete']);
+
 });
 
 // Test
@@ -104,3 +114,4 @@ Route::get('/recherche_ouvrage', function() {
     $ouvrages = App\Models\Ouvrage::all();
     return view('cherche_ouvrage', compact('ouvrages'));
 });
+
