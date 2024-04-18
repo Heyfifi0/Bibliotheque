@@ -78,7 +78,7 @@ class UtilisateurController extends Controller
 
     public function userC(){
 
-        return view('users.userCreate');
+        return view('admin.users.userCreate');
     }
 
     public function enregistre(Request $request){
@@ -99,7 +99,7 @@ class UtilisateurController extends Controller
         $user->prenom=$request->prenom;
         $user->date_naissance = $request->date_naissance;
         $user->email = $request->email;
-        $user->mot_de_passe = $request->mot_de_passe;
+        $user->password = $request->mot_de_passe;
         $user->adresse = $request->adresse;
         $user->code_postal = $request->code_postal;
         $user->ville = $request->ville;
@@ -132,7 +132,7 @@ class UtilisateurController extends Controller
     public function userUpdate(Request $request){
         $id= $request->id;
         $user=Utilisateur::find($id);
-        return view('users.userUpdate', ['user'=>$user]);
+        return view('admin.users.userUpdate', ['user'=>$user]);
     }
 
     public function userUpdateTraitement(Request $request){

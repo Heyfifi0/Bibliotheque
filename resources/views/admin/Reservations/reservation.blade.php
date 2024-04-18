@@ -47,13 +47,13 @@
         <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">{{$uneReservation->utilisateur->prenom}}
         {{$uneReservation->utilisateur->nom}}</td>
         <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400">{{$uneReservation->date_reservation}}</td>
-        <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400"><button class="bg-gray-300 hover:bg-gray-400  text-slate-500 font-bold py-2 px-4 rounded-l" onclick="return confirm('Voulez vous vraiment supprimer cet ouvrage?')"><a href="{{ url('/reservations-delete').'/'.$uneReservation->id_reservation}}">Supprimer</a>
-    </button><button class="bg-gray-300 hover:bg-gray-400  text-slate-500 font-bold py-2 px-4 rounded-r"><a href="{{ url('/reservations-modify-form').'/'.$uneReservation->id_reservation}}">Modifier</a></button></td>
+        <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-slate-500 dark:text-slate-400"><button class="bg-gray-300 hover:bg-gray-400  text-slate-500 font-bold py-2 px-4 rounded-l" onclick="return confirm('Voulez vous vraiment supprimer cet ouvrage?')"><a href="{{ url('/admin/reservations-delete').'/'.$uneReservation->id_reservation}}">Supprimer</a>
+    </button><button class="bg-gray-300 hover:bg-gray-400  text-slate-500 font-bold py-2 px-4 rounded-r"><a href="{{ url('/admin/reservations-modify-form').'/'.$uneReservation->id_reservation}}">Modifier</a></button></td>
     </tr>
         @endforeach
     </table>
 
-    <button class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"><a href="/reservations-create-form">Créer une réservation</a></button>
+    <button class="flex-shrink-0 bg-teal-500 hover:bg-teal-700 border-teal-500 hover:border-teal-700 text-sm border-4 text-white py-1 px-2 rounded"><a href="/admin/reservations-create-form">Créer une réservation</a></button>
 
 
 

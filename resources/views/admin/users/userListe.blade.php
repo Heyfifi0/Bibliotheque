@@ -67,12 +67,12 @@
         <td class="border px-4 py-2 text-center bg-purple-200">{{ $user['reception_newsletter'] }}</td>
         <td class="border px-4 py-2 text-center bg-pink-200">
           @if($user['statut'] == "en attente")
-            <a onclick="return confirm('Voulez-vous valider ce compte?')" href="/userValide/{{ $user['id_utilisateur'] }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded inline-block mr-2">Valider</a>
+            <a onclick="return confirm('Voulez-vous valider ce compte?')" href="/admin/userValide/{{ $user['id_utilisateur'] }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded inline-block mr-2">Valider</a>
           @else
-            <a onclick="return confirm('Voulez-vous désactiver ce compte?')" href="/userDesactive/{{ $user['id_utilisateur'] }}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded inline-block mr-2">Désactiver</a>
+            <a onclick="return confirm('Voulez-vous désactiver ce compte?')" href="/admin/userDesactive/{{ $user['id_utilisateur'] }}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded inline-block mr-2">Désactiver</a>
           @endif
-          <a href="/userUpdate/{{ $user['id_utilisateur'] }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-block mr-2">Modifier</a>
-          <a onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur?')" href="/userDelete/{{ $user['id_utilisateur'] }}" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded inline-block">Supprimer</a>
+          <a href="/admin/userUpdate/{{ $user['id_utilisateur'] }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-block mr-2">Modifier</a>
+          <a onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur?')" href="/admin/userDelete/{{ $user['id_utilisateur'] }}" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded inline-block">Supprimer</a>
         </td>
       </tr>
       @endforeach

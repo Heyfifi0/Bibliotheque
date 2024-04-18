@@ -78,7 +78,7 @@ class UtilisateurController extends Controller
 
     public function userC(){
 
-        return view('users.userCreate');
+        return view('admin.users.userCreate');
     }
 
     public function enregistre(Request $request){
@@ -114,7 +114,7 @@ class UtilisateurController extends Controller
     public function delete(Request $request){
         $user=Utilisateur::find($request->id);
         $user->delete();
-        return redirect('/userListe')->with('status','Utilisateur supprimé');
+        return redirect('/admin/userListe')->with('status','Utilisateur supprimé');
     }
 
     public function userValidate(Request $request){
@@ -124,7 +124,7 @@ class UtilisateurController extends Controller
         else
             $user->statut="en attente";
         $user->update();
-        return redirect('/userListe')->with('status','Compte Utilisateur activé');
+        return redirect('/admin/userListe')->with('status','Compte Utilisateur activé');
     }
 
 
@@ -132,7 +132,7 @@ class UtilisateurController extends Controller
     public function userUpdate(Request $request){
         $id= $request->id;
         $user=Utilisateur::find($id);
-        return view('users.userUpdate', ['user'=>$user]);
+        return view('admin.users.userUpdate', ['user'=>$user]);
     }
 
     public function userUpdateTraitement(Request $request){
@@ -171,7 +171,7 @@ class UtilisateurController extends Controller
 
         $user->update();
 
-        return redirect('/userListe')->with('status','Uilisateur modifiée');
+        return redirect('/admin/userListe')->with('status','Uilisateur modifiée');
 
     }
 }

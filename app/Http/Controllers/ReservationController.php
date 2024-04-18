@@ -43,11 +43,11 @@ class ReservationController extends Controller
             'date_reservation' => date("Y/m/d"),
         ]);
         //retour sur la page de réservations
-        return redirect('/reservations')->with('success', 'Réservation créée avec succès !');
+        return redirect('/admin/reservations')->with('success', 'Réservation créée avec succès !');
         }
         catch(QueryException $exception)
         {
-          return redirect('/reservations')->with('fail', 'erreur lors de la création de réservation : '.$exception->getMessage());
+          return redirect('/admin/reservations')->with('fail', 'erreur lors de la création de réservation : '.$exception->getMessage());
         }
     }
 
@@ -70,11 +70,11 @@ class ReservationController extends Controller
             $reservation->save();
 
             //retour sur la page de réservations
-            return redirect('/reservations')->with('success', 'Réservation modifiée avec succès !');
+            return redirect('/admin/reservations')->with('success', 'Réservation modifiée avec succès !');
         }
       catch(QueryException $exception)
       {
-        return redirect('/reservations')->with('fail', 'erreur lors de la modification : '.$exception->getMessage());
+        return redirect('/admin/reservations')->with('fail', 'erreur lors de la modification : '.$exception->getMessage());
       }
     }
 
@@ -89,11 +89,11 @@ class ReservationController extends Controller
         Reservation::find($id)->delete();
 
         //retour sur la page de réservations
-        return redirect('/reservations')->with('success', 'Réservation supprimée avec succès !');
+        return redirect('/admin/reservations')->with('success', 'Réservation supprimée avec succès !');
         }
         catch(QueryException $exception)
         {
-          return redirect('/reservations')->with('fail', 'erreur lors de la suppression : '.$exception->getMessage());
+          return redirect('/admin/reservations')->with('fail', 'erreur lors de la suppression : '.$exception->getMessage());
         }
 
     }
