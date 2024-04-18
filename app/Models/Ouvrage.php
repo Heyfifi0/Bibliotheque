@@ -21,7 +21,6 @@ class Ouvrage extends Model
         'titre',
         'type',
     ];
-    // avec type ENUM('livre','magazine','ebook')
 
     /**
      * Permet d'accéder aux genres de l'ouvrage.
@@ -42,7 +41,7 @@ class Ouvrage extends Model
      * Permet d'accéder aux auteurs de l'ouvrage.
      */
     public function auteurs(){
-        return $this->belongsToMany(Auteur::class);
+        return $this->belongsToMany(Auteur::class,'auteur_ouvrages', 'id_ouvrage', 'id_auteur' );
     }
 
     /**

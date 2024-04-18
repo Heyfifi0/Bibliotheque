@@ -8,6 +8,8 @@ use App\Http\Controllers\OuvrageController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\ConnexionController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Type_abonnementController;
+use App\Http\Controllers\EmpruntController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +35,6 @@ Route::post('/logout', [ConnexionController::class, 'logout'])->name('logout');
 Route::get('/', function () {
     return view('home');
 })->name('home');
-
 
 // Routes administrateur (utilisant la Gate 'admin')
 Route::middleware(['auth', 'can:admin'])->prefix('/admin')->group(function () {
@@ -62,8 +63,31 @@ Route::middleware(['auth', 'can:admin'])->prefix('/admin')->group(function () {
     // Ouvrages
     Route::resource('/ouvrages', OuvrageController::class);
 
-    // Reservations
-    Route::resource('/reservations', ReservationController::class);
+    // Type Abonnements
+    Route::resource('/type_abonnements', Type_abonnementController::class);
+
+    //page de gestion des réservations
+    Route::get('/reservations', [\App\Http\Controllers\ReservationController::class, 'index']);
+    //formulaire de création de réservation
+    Route::get('/reservations-create-form', [\App\Http\Controllers\formCreateReservationController::class, 'index']);
+    //créé la réservation du formulaire puis redirige sur la page réservations
+    Route::post('/reservations-create', [\App\Http\Controllers\ReservationController::class, 'create']);
+    //formulaire de modification de réservation
+    Route::get('/reservations-modify-form/{id}', [\App\Http\Controllers\formModifyReservationController::class, 'index']);
+    //modifie la réservation du formulaire puis redirige sur la page réservations
+    Route::post('/reservation-modify', [\App\Http\Controllers\ReservationController::class, 'update']);
+    //supprime une réservation
+    Route::get('/reservations-delete/{id}', [\App\Http\Controllers\ReservationController::class, 'destroy'])->name('reservation.delete');
+
+
+    Route::get('/userCreate', [\App\Http\Controllers\UtilisateurController::class,'userC']) ;
+    Route::post('/userCreate/enreg',[\App\Http\Controllers\UtilisateurController::class,'enregistre']);
+    Route::get('/userListe', [\App\Http\Controllers\UtilisateurController::class,'userL'])->name('userListe');
+    Route::get('/userValide/{id}',[\App\Http\Controllers\UtilisateurController::class,'userValidate']);
+    Route::get('/userDesactive/{id}',[\App\Http\Controllers\UtilisateurController::class,'userValidate']);
+    Route::get('/userUpdate/{id}',[\App\Http\Controllers\UtilisateurController::class,'userUpdate']);
+    Route::post('/userUpdate/update/{id}',[\App\Http\Controllers\UtilisateurController::class,'userUpdateTraitement']);
+    Route::get('/userDelete/{id}',[\App\Http\Controllers\UtilisateurController::class,'delete']);
 
 });
 
@@ -71,3 +95,15 @@ Route::middleware(['auth', 'can:admin'])->prefix('/admin')->group(function () {
 Route::get('/welcome', function () {
     return view('welcome');
 })->name('welcome');
+
+//test table pivot
+Route::get('/genre', function () {
+    return App\Models\Ouvrage::find(1)->genres()->get();
+});
+
+
+Route::get('/recherche_ouvrage', function() {
+    $ouvrages = App\Models\Ouvrage::all();
+    return view('user.cherche_ouvrage', compact('ouvrages'));
+});
+
