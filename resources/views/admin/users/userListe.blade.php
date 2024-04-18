@@ -8,7 +8,6 @@
         <input class="boutonInput" type="submit" value="Ajouter un utilisateur"/>
     </form>
 
-    <!--
     <table class="shadow-lg bg-white border-collapse">
         <tr><th class="bg-blue-100 border text-left px-8 py-4">Identifiant</th><th class="bg-blue-100 border text-left px-8 py-4">Nom</th><th class="bg-blue-100 border text-left px-8 py-4">Prenom</th><th class="bg-blue-100 border text-left px-8 py-4">Statut</th><th class="bg-blue-100 border text-left px-8 py-4">Date naissance</th><th class="bg-blue-100 border text-left px-8 py-4">Email</th><th class="bg-blue-100 border text-left px-8 py-4">Adresse</th><th class="bg-blue-100 border text-left px-8 py-4">Code Postal</th><th class="bg-blue-100 border text-left px-8 py-4">Ville</th><th class="bg-blue-100 border text-left px-8 py-4">Newslatter</th><th class="bg-blue-100 border text-left px-8 py-4">MAJ</th></tr>
         @foreach($users  as $user)
@@ -31,11 +30,11 @@
             <p class="bouton"> <a href="/userUpdate/{{$user->id_utilisateur}}"  tabindex="-1" role="button" class="bouton">Modifier</a></p>
             <p class="bouton"> <a onclick="return confirm('Êtes vous sur de vouloir supprimer cet utilisateur?')" href="/userDelete/{{$user->id_utilisateur}}" tabindex="-1" role="button" class="bouton">Supprimer</a></p></td></tr>
         @endforeach
-    </table>  -->
+    </table>
 
 
 
-<div class="overflow-x-auto">
+{{-- <div class="overflow-x-auto">
   <table class="table-auto bg-gradient-to-br from-purple-400 via-pink-500 to-red-500 border-collapse">
     <thead>
       <tr>
@@ -78,7 +77,7 @@
       @endforeach
     </tbody>
   </table>
-</div>
+</div> --}}
 
 
     <div class="flex justify-center my-8">
