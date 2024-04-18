@@ -25,7 +25,7 @@ class AbonnementController extends Controller
     {
         $type_abonnements = Type_abonnement::all();
         $utilisateurs = Utilisateur::all();
-        return view('abonnements.create', compact('type_abonnements', 'utilisateurs'));
+        return view('admin.abonnements.create', compact('type_abonnements', 'utilisateurs'));
     }
 
     public function store(Request $request)
@@ -40,7 +40,7 @@ class AbonnementController extends Controller
 
         Abonnement::create($request->all());
         // Redirection avec un message de succès
-        return redirect()->route('admin.abonnements.index')
+        return redirect()->route('abonnements.index')
                         ->with('success', 'Abonnement créé avec succès.');
 
     }
@@ -50,7 +50,7 @@ class AbonnementController extends Controller
      */
     public function show(Abonnement $abonnement)
     {
-        return view('abonnements.show', compact('abonnement'));
+        return view('admin.abonnements.show', compact('abonnement'));
     }
 
     /**
@@ -60,7 +60,7 @@ class AbonnementController extends Controller
     {
         $type_abonnements = Type_abonnement::all();
         $utilisateurs = Utilisateur::all();
-        return view('abonnements.edit', compact('abonnement', 'type_abonnements', 'utilisateurs'));
+        return view('admin.abonnements.edit', compact('abonnement', 'type_abonnements', 'utilisateurs'));
     }
 
     /**
@@ -76,7 +76,7 @@ class AbonnementController extends Controller
         ]);
 
         $abonnement->update($request->all());
-        return redirect()->route('admin.abonnements.index')
+        return redirect()->route('abonnements.index')
         ->with('success', 'Abonnement updated successfully.');
     }
 
@@ -86,7 +86,7 @@ class AbonnementController extends Controller
     public function destroy(Abonnement $abonnement)
     {
         $abonnement->delete();
-        return redirect()->route('admin.abonnements.index')
+        return redirect()->route('abonnements.index')
           ->with('success', 'Abonnement deleted successfully');
     }
 }
