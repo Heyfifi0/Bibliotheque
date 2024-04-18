@@ -28,6 +28,12 @@
         <li class="navbar-item"><a href="{{ route('type_abonnements.index') }}">Type Abonnements</a></li>
         <li class="navbar-item"><a href="/admin/reservations">Réservations</a></li>
         <li class="navbar-item"><a href="/admin/userListe">Utilisateurs</a></li>
+        <li class="navbar-item">
+            <form action="{{ route('logout') }}" method="post">
+                @csrf
+                <button type="submit" class="logout-btn">Se déconnecter</button>
+            </form>
+        </li>
     </ul>
 </nav>
 
