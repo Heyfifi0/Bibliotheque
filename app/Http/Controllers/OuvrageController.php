@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Editeur;
 use App\Models\Ouvrage;
 use Illuminate\Pagination\Paginator;
 use App\Models\Genre;
 use App\Models\Auteur;
 use App\Models\Editeur;
-use Session;
+use Illuminate\Support\Facades\Session;
 
 use Illuminate\Http\Request;
 
