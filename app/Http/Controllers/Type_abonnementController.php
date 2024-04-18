@@ -13,7 +13,7 @@ class Type_abonnementController extends Controller
     public function index()
     {
         $type_abonnements = Type_abonnement::all();
-        return view('type_abonnements.index', compact('type_abonnements'));
+        return view('admin.type_abonnements.index', compact('type_abonnements'));
     }
 
     /**
@@ -21,7 +21,7 @@ class Type_abonnementController extends Controller
      */
     public function create()
     {
-        return view('type_abonnements.create');
+        return view('admin.type_abonnements.create');
     }
 
     /**
@@ -34,7 +34,7 @@ class Type_abonnementController extends Controller
             'prix' => 'required|max:255'
         ]);
         Type_abonnement::create($request->all());
-        return redirect()->route('type_abonnements.index')
+        return redirect()->route('type_abonnements.create')
         ->with('success', 'Type Abonnement created successfully.');
     }
 
@@ -51,7 +51,7 @@ class Type_abonnementController extends Controller
      */
     public function edit(Type_abonnement $type_abonnement)
     {
-        return view('type_abonnements.edit', compact('type_abonnement'));
+        return view('admin.type_abonnements.edit', compact('type_abonnement'));
     }
 
     /**
@@ -63,7 +63,7 @@ class Type_abonnementController extends Controller
             'nom' => 'required|max:255',
             'prix' => 'required|max:255'
         ]);
-    
+
         $type_abonnement->update($request->all());
         return redirect()->route('type_abonnements.index')
         ->with('success', 'Type Abonnement updated successfully.');

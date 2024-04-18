@@ -15,7 +15,7 @@ class AbonnementController extends Controller
     public function index()
     {
         $abonnements = Abonnement::all();
-        return view('abonnements.index', compact('abonnements'));
+        return view('admin.abonnements.index', compact('abonnements'));
     }
 
     /**
@@ -40,9 +40,9 @@ class AbonnementController extends Controller
 
         Abonnement::create($request->all());
         // Redirection avec un message de succès
-        return redirect()->route('abonnements.index')
+        return redirect()->route('admin.abonnements.index')
                         ->with('success', 'Abonnement créé avec succès.');
-                        
+
     }
 
     /**
@@ -73,10 +73,10 @@ class AbonnementController extends Controller
             'id_utilisateur' => 'required|max:255',
             'date_debut' => 'required|max:255',
             'date_fin' => 'required|max:255'
-        ]); 
-    
+        ]);
+
         $abonnement->update($request->all());
-        return redirect()->route('abonnements.index')
+        return redirect()->route('admin.abonnements.index')
         ->with('success', 'Abonnement updated successfully.');
     }
 
@@ -86,7 +86,7 @@ class AbonnementController extends Controller
     public function destroy(Abonnement $abonnement)
     {
         $abonnement->delete();
-        return redirect()->route('abonnements.index')
+        return redirect()->route('admin.abonnements.index')
           ->with('success', 'Abonnement deleted successfully');
     }
 }

@@ -19,7 +19,7 @@ class OuvrageController extends Controller
     public function index()
     {
         $livres = Ouvrage::paginate(6); // Affiche 6 ouvrages par page
-        return view('ouvrages.index', compact('livres'));// compact va  récupérer la variable livres pour lui ajouter une fonction dans la vue index
+        return view('admin.ouvrages.index', compact('livres'));// compact va  récupérer la variable livres pour lui ajouter une fonction dans la vue index
     }
 
     /**
@@ -31,7 +31,7 @@ class OuvrageController extends Controller
         $genres = Genre::all(); // Récupère tous les genres
         $editeurs = Editeur::all(); // Récupère tous les genres
 
-        return view('ouvrages.create', compact('auteurs', 'genres', 'editeurs'));}// compact va  récupérer les variables, pour la vue create
+        return view('admin.ouvrages.create', compact('auteurs', 'genres', 'editeurs'));}// compact va  récupérer les variables, pour la vue create
     /**
      * Insère l'ouvrage crée dans la base de données.
      */
@@ -62,7 +62,7 @@ class OuvrageController extends Controller
         // Ajout des genres à la table pivot
         $ouvrage->genres()->attach($request->get('genre'));
         Session::flash('success', 'ouvrage ajouté');
-        return redirect('/ouvrages')->with('success','Ouvrage créé avec succès');
+        return redirect('/admin/ouvrages')->with('success','Ouvrage créé avec succès');
     }
 
     /**
@@ -83,13 +83,8 @@ class OuvrageController extends Controller
         $auteurs = Auteur::all(); // Récupère tous les auteurs
         $genres = Genre::all(); // Récupère tous les genres
         $editeurs = Editeur::all(); // Récupère tous les genres
-        return view('ouvrages.edit', compact('ouvrage','auteurs', 'genres', 'editeurs'));
-      }
-        $auteurs = Auteur::all(); // Récupère tous les auteurs
-        $genres = Genre::all(); // Récupère tous les genres
-        $editeurs = Editeur::all(); // Récupère tous les genres
-        return view('ouvrages.edit', compact('ouvrage','auteurs', 'genres', 'editeurs'));
-      }
+        return view('admin.ouvrages.edit', compact('ouvrage','auteurs', 'genres', 'editeurs'));
+    }
 
     /**
      * Update the specified resource {{ $livre->titre}}  in storage.
@@ -121,10 +116,6 @@ class OuvrageController extends Controller
         return redirect()->route('ouvrages.index')->with('success', 'Ouvrage mis à jour avec succès');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy($id)
     public function destroy($id)
     {
         $livre = Ouvrage::findOrFail($id);
@@ -132,5 +123,6 @@ class OuvrageController extends Controller
         $livre->genres()->detach();
         $livre->delete();
 
-        return redirect('/ouvrages')->with('success', 'Livre supprimé avec succès');    }
+        return redirect('/admin/ouvrage')->with('success', 'Livre supprimé avec succès');
+    }
 }

@@ -13,7 +13,7 @@ class GenreController extends Controller
     public function index()
     {
         $mesGenres = Genre::all();
-        return view('genre/listeGenre', compact('mesGenres'));
+        return view('admin.genre.listeGenre', compact('mesGenres'));
     }
 
     /**
@@ -21,7 +21,7 @@ class GenreController extends Controller
      */
     public function create()
     {
-        return view('genre.createGenre');
+        return view('admin.genre.createGenre');
     }
 
     /**
@@ -50,7 +50,7 @@ class GenreController extends Controller
      */
     public function edit(Genre $genre)
     {
-        return view('genre.updateGenre', ['genre'=>$genre]);
+        return view('admin.genre.updateGenre', ['genre'=>$genre]);
     }
 
     /**

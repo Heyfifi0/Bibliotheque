@@ -16,7 +16,7 @@ class ReservationController extends Controller
         //récupère les réservations
         $reservations = Reservation::paginate(10);
         //renvoie la vue avec les réservations récupérées
-        return view ("Reservations/reservation", compact("reservations"));  
+        return view ("admin.Reservations.reservation", compact("reservations"));
     }
 
     /**
@@ -25,7 +25,7 @@ class ReservationController extends Controller
     public function show(Reservation $reservation)
     {
         //
-        
+
     }
     /**
      * insertion de nouvelle réservation.
@@ -43,11 +43,11 @@ class ReservationController extends Controller
             'date_reservation' => date("Y/m/d"),
         ]);
         //retour sur la page de réservations
-        return redirect('/reservations')->with('success', 'Réservation créée avec succès !');            
+        return redirect('/reservations')->with('success', 'Réservation créée avec succès !');
         }
         catch(QueryException $exception)
         {
-          return redirect('/reservations')->with('fail', 'erreur lors de la création de réservation : '.$exception->getMessage());     
+          return redirect('/reservations')->with('fail', 'erreur lors de la création de réservation : '.$exception->getMessage());
         }
     }
 
@@ -68,13 +68,13 @@ class ReservationController extends Controller
             $reservation->date_reservation = $request->input('date');
             //enregistrement dans la base de données
             $reservation->save();
-            
+
             //retour sur la page de réservations
-            return redirect('/reservations')->with('success', 'Réservation modifiée avec succès !');               
+            return redirect('/reservations')->with('success', 'Réservation modifiée avec succès !');
         }
       catch(QueryException $exception)
       {
-        return redirect('/reservations')->with('fail', 'erreur lors de la modification : '.$exception->getMessage());     
+        return redirect('/reservations')->with('fail', 'erreur lors de la modification : '.$exception->getMessage());
       }
     }
 
@@ -87,14 +87,14 @@ class ReservationController extends Controller
         {
         //suppression de la réservation
         Reservation::find($id)->delete();
-        
+
         //retour sur la page de réservations
-        return redirect('/reservations')->with('success', 'Réservation supprimée avec succès !');  
-        }  
+        return redirect('/reservations')->with('success', 'Réservation supprimée avec succès !');
+        }
         catch(QueryException $exception)
         {
-          return redirect('/reservations')->with('fail', 'erreur lors de la suppression : '.$exception->getMessage());     
-        }  
+          return redirect('/reservations')->with('fail', 'erreur lors de la suppression : '.$exception->getMessage());
+        }
 
     }
 }

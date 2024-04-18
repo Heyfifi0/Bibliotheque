@@ -36,11 +36,6 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-// Réservations
-Route::resource('/reservations', ReservationController::class);
-
-Route::resource('/abonnements', AbonnementController::class);
-
 // Routes administrateur (utilisant la Gate 'admin')
 Route::middleware(['auth', 'can:admin'])->prefix('/admin')->group(function () {
 
@@ -68,14 +63,11 @@ Route::middleware(['auth', 'can:admin'])->prefix('/admin')->group(function () {
     // Ouvrages
     Route::resource('/ouvrages', OuvrageController::class);
 
-    // Reservations
-    // Route::resource('/reservations', ReservationController::class);
-
     // Type Abonnements
     Route::resource('/type_abonnements', Type_abonnementController::class);
 
     //page de gestion des réservations
-    //Route::get('/reservations', [\App\Http\Controllers\ReservationController::class, 'index']);
+    Route::get('/reservations', [\App\Http\Controllers\ReservationController::class, 'index']);
     //formulaire de création de réservation
     Route::get('/reservations-create-form', [\App\Http\Controllers\formCreateReservationController::class, 'index']);
     //créé la réservation du formulaire puis redirige sur la page réservations

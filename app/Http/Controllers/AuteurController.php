@@ -13,7 +13,7 @@ class AuteurController extends Controller
     public function index()
     {
         $auteurs = Auteur::paginate(12); //Récupère les auteurs + paginate
-        return view('auteur.index', compact('auteurs'));
+        return view('admin.auteur.index', compact('auteurs'));
     }
 
     /**
@@ -21,7 +21,7 @@ class AuteurController extends Controller
      */
     public function create()
     {
-        return view('auteur.create'); //Return de la view create
+        return view('admin.auteur.create'); //Return de la view create
     }
 
     /**
@@ -30,7 +30,7 @@ class AuteurController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            
+
             'nom' => 'required|max:50',
             'prenom' => 'required|max:50',
         ]);
@@ -42,8 +42,8 @@ class AuteurController extends Controller
         ]);
         $auteur->save();
 
-        return redirect('/auteurs') ->with('Auteur ajouté avec succés');
-        
+        return redirect('/admin/auteurs') ->with('Auteur ajouté avec succés');
+
 
     }
 
@@ -60,7 +60,7 @@ class AuteurController extends Controller
      */
     public function edit(Auteur $auteur)
     {
-        return view('auteur.edit', compact('auteur'));
+        return view('admin.auteur.edit', compact('auteur'));
     }
 
     /**
@@ -69,19 +69,19 @@ class AuteurController extends Controller
     public function update(Request $request, $id_auteur)
     {
         $request->validate([
-            
+
             'nom' => 'required|max:50',
             'prenom' => 'required|max:50',
         ]);
 
-        $auteur = Auteur::findOrFail($id_auteur); //cherche dans le Modele Auteur l'id_auteur 
+        $auteur = Auteur::findOrFail($id_auteur); //cherche dans le Modele Auteur l'id_auteur
 
         $auteur ->nom = $request->get('nom');
         $auteur ->prenom = $request->get('prenom');
-        
+
         $auteur->save();
 
-        return redirect('/auteurs')->with('success', 'Auteur mis à jour avec succès');
+        return redirect('/admin/auteurs')->with('success', 'Auteur mis à jour avec succès');
     }
 
     /**
@@ -91,6 +91,6 @@ class AuteurController extends Controller
     {
     $auteur = Auteur::findOrFail($id);
     $auteur->delete();
-    return redirect('/auteurs')->with('success', 'Auteur supprimé avec succès');
+    return redirect('/admin/auteurs')->with('success', 'Auteur supprimé avec succès');
     }
 }

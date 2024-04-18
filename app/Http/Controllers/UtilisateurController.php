@@ -72,7 +72,7 @@ class UtilisateurController extends Controller
         $users=Utilisateur::paginate(4);
         //renvoie vers la vue listelois
 
-        return view('users.userListe', compact('users'));
+        return view('admin.users.userListe', compact('users'));
 
     }
 
