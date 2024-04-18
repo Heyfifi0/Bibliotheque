@@ -8,6 +8,7 @@ use App\Http\Controllers\OuvrageController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\ConnexionController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Type_abonnementController;
 use App\Http\Controllers\EmpruntController;
 
 /*
@@ -38,6 +39,7 @@ Route::get('/', function () {
 // Réservations
 Route::resource('/reservations', ReservationController::class);
 
+Route::resource('/abonnements', AbonnementController::class);
 
 // Routes administrateur (utilisant la Gate 'admin')
 Route::middleware(['auth', 'can:admin'])->prefix('/admin')->group(function () {
@@ -69,6 +71,9 @@ Route::middleware(['auth', 'can:admin'])->prefix('/admin')->group(function () {
     // Reservations
     // Route::resource('/reservations', ReservationController::class);
 
+    // Type Abonnements
+    Route::resource('/type_abonnements', Type_abonnementController::class);
+
     //page de gestion des réservations
     //Route::get('/reservations', [\App\Http\Controllers\ReservationController::class, 'index']);
     //formulaire de création de réservation
@@ -88,3 +93,14 @@ Route::middleware(['auth', 'can:admin'])->prefix('/admin')->group(function () {
 Route::get('/welcome', function () {
     return view('welcome');
 })->name('welcome');
+
+//test table pivot
+Route::get('/genre', function () {
+    return App\Models\Ouvrage::find(1)->genres()->get();
+});
+
+//Route::get('/recherche_ouvrage', [OuvrageController::class, 'index']);
+Route::get('/recherche_ouvrage', function() {
+    $ouvrages = App\Models\Ouvrage::all();
+    return view('cherche_ouvrage', compact('ouvrages'));
+});
