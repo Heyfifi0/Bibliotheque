@@ -123,6 +123,6 @@ class OuvrageController extends Controller
         $livre->genres()->detach();
         $livre->delete();
 
-        return redirect('/admin/ouvrage')->with('success', 'Livre supprimé avec succès');
+        return redirect('/admin/ouvrages')->with('success', 'Livre supprimé avec succès');
     }
 }
