@@ -51,7 +51,9 @@
                     @endforeach
                 </tbody>
             </table>
+            
         </div>
     </div>
 </div>
+{{-- {{ $editeurs->links() }} --}}
 @endsection

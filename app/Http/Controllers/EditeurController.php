@@ -12,7 +12,7 @@ class EditeurController extends Controller
      */
     public function index()
     {
-        $editeurs = Editeur::orderBy('id_editeur')->paginate(5); // Pagination par 5
+        $editeurs = Editeur::orderBy('id_editeur')->get(); // Pagination par 5
 
         return view('admin.editeurs.index', compact('editeurs'));
     }
